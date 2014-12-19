@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(KroshKing)
 
 ADD_DEFINITIONS(-O2 -funsigned-char -Wall -W -Wshadow -Wpointer-arith -Winline -DGL_GLEXT_PROTOTYPES)
+#DGL_GLEXT_PROTOTYPES - needs for linux - TODO check it on mac and win
 
 FIND_PACKAGE(GLUT REQUIRED)
 FIND_PACKAGE(OpenGL REQUIRED)

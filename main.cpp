@@ -19,8 +19,8 @@
 #endif
 
 //Constants
-#define SCREEN_X 800
-#define SCREEN_Y 600
+#define SCREEN_X 80
+#define SCREEN_Y 60
 GLfloat move_loc[4] = {0,0,0,0};
 
 
@@ -121,11 +121,21 @@ void InitializeProgram()
     std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
 }
 
-const float vertexPositions[12] = {
-    0.75f, 0.75f, 0.0f, 1.0f,
-    0.75f, -0.75f, 0.0f, 1.0f,
-    -0.75f, -0.75f, 0.0f, 1.0f,
+#define VSZ 16
+
+const float vertexPositions[VSZ] = {
+    0.5f, 0.5f, 0.0f, 1.0f,
+    0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, 0.5f, 0.0f, 1.0f
 };
+
+//Triangle
+//const float vertexPositions[12] = {
+//    0.75f, 0.75f, 0.0f, 1.0f,
+//    0.75f, -0.75f, 0.0f, 1.0f,
+//    -0.75f, -0.75f, 0.0f, 1.0f,
+//};
 
 GLuint positionBufferObject;
 GLuint vao;
@@ -178,14 +188,16 @@ void display()
     glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
     glVertexPointer( 4, GL_FLOAT, 0, NULL);
     
-    GLfloat data[12];
-    glGetBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexPositions), (void*)data);
-    for (int i = 0; i < 12; ++i)
-    {
-        printf("xxx data[%d] = %f\n", i, data[i]);
-    }
+    //DEBUG GLfloat data[VSZ];
+    //DEBUG glGetBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexPositions), (void*)data);
+    //DEBUG for (int i = 0; i < VSZ; ++i)
+    //DEBUG {
+    //DEBUG     printf("xxx data[%d] = %f\n", i, data[i]);
+    //DEBUG }
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
+    //glDrawArrays(GL_POINTS, 0, 4); //OLGA test drawing
+    //glDrawArrays(GL_TRIANGLES, 0, 4); //OLGA test drawing
     
     glUseProgram(0);
     
