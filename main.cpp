@@ -243,11 +243,11 @@ int main(int argc, char *argv[])
     
     glutReshapeFunc(reshape);
     glutMouseFunc(mouse);
-    /*
+    
     init();
-    */
-      printf("OpenGL version : %s \n", glGetString(GL_VERSION));
-   glutMainLoop();
+    
+    printf("OpenGL version : %s \n", glGetString(GL_VERSION));
+    glutMainLoop();
     
 
     return 0;
