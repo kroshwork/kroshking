@@ -18,6 +18,11 @@
 #include <GL/glut.h>
 #endif
 
+//Constants
+#define SCREEN_X 800
+#define SCREEN_Y 600
+GLfloat move_loc[4] = {0,0,0,0};
+
 
 GLuint CreateShader(GLenum eShaderType, const std::string &strShaderFile)
 {
@@ -150,7 +155,6 @@ void init()
     glBindVertexArray(vao);
 }
 
-GLfloat move_loc[4] = {0,0,0,0};
 
 //Called to update the display.
 //You should call glutSwapBuffers after all of your rendering to display what you rendered.
@@ -214,8 +218,6 @@ void keyboard(unsigned char key, int, int)
         }
     }
 }
-#define SCREEN_X 800
-#define SCREEN_Y 600
 void mouse(int _btn, int _state, int _x, int _y)
 {
     //_btn in [GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, GLUT_RIGHT_BUTTON]
@@ -238,10 +240,16 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(200, 100);
     glutCreateWindow(argv[0]);
     glutDisplayFunc(display);
+    
     glutReshapeFunc(reshape);
     glutMouseFunc(mouse);
+    /*
     init();
-    glutMainLoop();
+    */
+      printf("OpenGL version : %s \n", glGetString(GL_VERSION));
+   glutMainLoop();
+    
+
     return 0;
 }
 
