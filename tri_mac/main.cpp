@@ -116,10 +116,20 @@ void InitializeProgram()
     std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
 }
 
-const float vertexPositions[12] = {
+const float SCREEN_X = 600; //800 XXX
+const float SCREEN_Y = 600;
+
+
+/*const float vertexPositions[12] = {
     0.75f, 0.75f, 0.0f, 1.0f,
     0.75f, -0.75f, 0.0f, 1.0f,
     -0.75f, -0.75f, 0.0f, 1.0f,
+};
+*/
+const float vertexPositions[12] = {
+    0.0f, 0.0f, 0.0f, 1.0f,
+    0.5f, 0.0f, 0.0f, 1.0f,
+    0.0f, -0.5f, 0.0f, 1.0f,
 };
 
 GLuint positionBufferObject;
@@ -214,8 +224,7 @@ void keyboard(unsigned char key, int, int)
         }
     }
 }
-#define SCREEN_X 800
-#define SCREEN_Y 600
+
 void mouse(int _btn, int _state, int _x, int _y)
 {
     //_btn in [GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, GLUT_RIGHT_BUTTON]
