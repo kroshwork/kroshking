@@ -19,8 +19,8 @@
 #endif
 
 //Constants
-#define SCREEN_X 80
-#define SCREEN_Y 60
+#define SCREEN_X 800
+#define SCREEN_Y 600
 GLfloat move_loc[4] = {0,0,0,0};
 
 
@@ -241,7 +241,7 @@ void mouse(int _btn, int _state, int _x, int _y)
     }
 }
 
-unsigned int defaults(unsigned int displayMode, int &width, int &height) {return displayMode;}
+unsigned int defaults(unsigned int displayMode, int /*&width*/, int /*&height*/) {return displayMode;}
 
 
 int main(int argc, char *argv[])
