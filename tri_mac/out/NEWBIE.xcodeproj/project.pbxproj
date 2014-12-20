@@ -1,0 +1,683 @@
+// !$*UTF8*$!
+{
+       archiveVersion = 1;
+       classes = {
+       };
+       objectVersion = 46;
+       objects = {
+
+/* Begin PBXAggregateTarget section */
+              092E4FFF11C546A08AF6EC31 /* ALL_BUILD */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = F96CA53C1FE2499E88421FE3 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+                     buildPhases = (
+                            BBD1413934044101A986AC57 /* CMake Rules */,
+                     );
+                     dependencies = (
+                            ADC2DA209B32473A92742182 /* PBXTargetDependency */,
+                            588B03ADA341452EB2AD7D3E /* PBXTargetDependency */,
+                     );
+                     name = ALL_BUILD;
+                     productName = ALL_BUILD;
+              };
+              09F669795C954A69B1D375F3 /* ZERO_CHECK */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = 186A7794D8FB4939AC127FC5 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+                     buildPhases = (
+                            E405F8A381FE4EF9929EDCFB /* CMake Rules */,
+                     );
+                     dependencies = (
+                     );
+                     name = ZERO_CHECK;
+                     productName = ZERO_CHECK;
+              };
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+3BD5687D2F444361A38D6933 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 62973A037F544CC78F2B9A58 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */; settings = { COMPILER_FLAGS = ""; }; };
+C9F459E992C24BA2AB7FB45C /* /Users/vasya/king_test/kroshking/tri_mac/main.cpp */ = {isa = PBXBuildFile; fileRef = DF99DB99DF23440BA8D7A927 /* /Users/vasya/king_test/kroshking/tri_mac/main.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+              A7EF7504613D449FB712249B /*  */ = {
+                     isa = PBXBuildStyle;
+              };
+              D7E79844C1244F3FAA189482 /* Debug */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Debug;
+              };
+              1E53BA21A9854495B23DB260 /* Release */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Release;
+              };
+              0ECE330C7BA043A4BC4C447D /* MinSizeRel */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = MinSizeRel;
+              };
+              DCA856ABC55E4515A262F1F5 /* RelWithDebInfo */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+              43D1D16BC7BA480F92AE6C31 /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = A5F63CAE8F1B4821A9E042CC /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = 09F669795C954A69B1D375F3;
+                     remoteInfo = ZERO_CHECK;
+              };
+              E260A48BF47D43C2AAAEA055 /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = A5F63CAE8F1B4821A9E042CC /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = 22E58E1B8BBF4B9EA4CBECB8;
+                     remoteInfo = main;
+              };
+              36B9D3C2E6124F33975BB22F /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = A5F63CAE8F1B4821A9E042CC /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = 09F669795C954A69B1D375F3;
+                     remoteInfo = ZERO_CHECK;
+              };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+62973A037F544CC78F2B9A58 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+DF99DB99DF23440BA8D7A927 /* /Users/vasya/king_test/kroshking/tri_mac/main.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "main.cpp"; path = "main.cpp"; sourceTree = SOURCE_ROOT; };
+26D490200A00464B91934510 /* main */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = main; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+A3EF2F76AFB34D88ACDD7F76 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+2A91F81EA5704A74BE726C00 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+              457B7A94A78F4101B46AB9B9  = {
+                     isa = PBXGroup;
+                     children = (
+                            CEEDC4E9B5B64FEDB9D936FB /* Sources */,
+                            962C96213C004EB9816CD6CD /* Resources */,
+                            2B8A16A3AA0D48EBAC1018BB /* Products */,
+                     );
+                     sourceTree = "<group>";
+              };
+              CEEDC4E9B5B64FEDB9D936FB /* Sources */ = {
+                     isa = PBXGroup;
+                     children = (
+                            9FD9230E3B3C45168211AD06 /* main */,
+                            E3144089F07D4A9EA629C69E /* ALL_BUILD */,
+                            1E054DF515E94D81BD4CE4E2 /* ZERO_CHECK */,
+                     );
+                     name = Sources;
+                     sourceTree = "<group>";
+              };
+              962C96213C004EB9816CD6CD /* Resources */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = Resources;
+                     sourceTree = "<group>";
+              };
+              9FD9230E3B3C45168211AD06 /* main */ = {
+                     isa = PBXGroup;
+                     children = (
+                            E59CBCC408F142108D6F4BF6 /* Source Files */,
+                            62973A037F544CC78F2B9A58 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */,
+                     );
+                     name = main;
+                     sourceTree = "<group>";
+              };
+              E59CBCC408F142108D6F4BF6 /* Source Files */ = {
+                     isa = PBXGroup;
+                     children = (
+                            DF99DB99DF23440BA8D7A927 /* /Users/vasya/king_test/kroshking/tri_mac/main.cpp */,
+                     );
+                     name = "Source Files";
+                     sourceTree = "<group>";
+              };
+              E3144089F07D4A9EA629C69E /* ALL_BUILD */ = {
+                     isa = PBXGroup;
+                     children = (
+                            EC4B14D7FCAE4F2FA5F4CD8A /* CMake Rules */,
+                            A3EF2F76AFB34D88ACDD7F76 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */,
+                     );
+                     name = ALL_BUILD;
+                     sourceTree = "<group>";
+              };
+              EC4B14D7FCAE4F2FA5F4CD8A /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              1E054DF515E94D81BD4CE4E2 /* ZERO_CHECK */ = {
+                     isa = PBXGroup;
+                     children = (
+                            D4B875C0081843D9AAE3E27B /* CMake Rules */,
+                            2A91F81EA5704A74BE726C00 /* /Users/vasya/king_test/kroshking/tri_mac/CMakeLists.txt */,
+                     );
+                     name = ZERO_CHECK;
+                     sourceTree = "<group>";
+              };
+              D4B875C0081843D9AAE3E27B /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              2B8A16A3AA0D48EBAC1018BB /* Products */ = {
+                     isa = PBXGroup;
+                     children = (
+                            26D490200A00464B91934510 /* main */,
+                     );
+                     name = Products;
+                     sourceTree = "<group>";
+              };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+              22E58E1B8BBF4B9EA4CBECB8 /* main */ = {
+                     isa = PBXNativeTarget;
+                     buildConfigurationList = B47827E386934F6C9FC6D852 /* Build configuration list for PBXNativeTarget "main" */;
+                     buildPhases = (
+                            D36F43BE9BA746D582A45534 /* Sources */,
+                     );
+                     buildRules = (
+                     );
+                     dependencies = (
+                            6659FC1986BB4873AF4F5338 /* PBXTargetDependency */,
+                     );
+                     name = main;
+                     productName = main;
+                     productReference = 26D490200A00464B91934510 /* main */;
+                     productType = "com.apple.product-type.tool";
+              };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+              A5F63CAE8F1B4821A9E042CC /* Project object */ = {
+                     isa = PBXProject;
+                     attributes = {
+                            BuildIndependentTargetsInParallel = YES;
+                     };
+                     buildConfigurationList = 4CF0E89218F7437992FDF13B /* Build configuration list for PBXProject  "NEWBIE" */;
+                     buildSettings = {
+                     };
+                     buildStyles = (
+                            D7E79844C1244F3FAA189482 /* Debug */,
+                            1E53BA21A9854495B23DB260 /* Release */,
+                            0ECE330C7BA043A4BC4C447D /* MinSizeRel */,
+                            DCA856ABC55E4515A262F1F5 /* RelWithDebInfo */,
+                     );
+                     compatibilityVersion = "Xcode 3.2";
+                     hasScannedForEncodings = 0;
+                     mainGroup = 457B7A94A78F4101B46AB9B9;
+                     projectDirPath = "..";
+                     projectRoot = "";
+                     targets = (
+                            22E58E1B8BBF4B9EA4CBECB8 /* main */,
+                            092E4FFF11C546A08AF6EC31 /* ALL_BUILD */,
+                            09F669795C954A69B1D375F3 /* ZERO_CHECK */,
+                     );
+              };
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+              123D5A99E4814A7FBC5DC62D /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              BBD1413934044101A986AC57 /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/vasya/king_test/kroshking/tri_mac/out -f /Users/vasya/king_test/kroshking/tri_mac/out/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+              D960CC454D5F45E2B6795F7B /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              E405F8A381FE4EF9929EDCFB /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/vasya/king_test/kroshking/tri_mac/out -f /Users/vasya/king_test/kroshking/tri_mac/out/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+              D36F43BE9BA746D582A45534 /* Sources */ = {
+                     isa = PBXSourcesBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                            C9F459E992C24BA2AB7FB45C /* /Users/vasya/king_test/kroshking/tri_mac/main.cpp */,
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+              };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+              6659FC1986BB4873AF4F5338 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = 09F669795C954A69B1D375F3 /* ZERO_CHECK */;
+                     targetProxy = 43D1D16BC7BA480F92AE6C31 /* PBXContainerItemProxy */;
+              };
+              ADC2DA209B32473A92742182 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = 22E58E1B8BBF4B9EA4CBECB8 /* main */;
+                     targetProxy = E260A48BF47D43C2AAAEA055 /* PBXContainerItemProxy */;
+              };
+              588B03ADA341452EB2AD7D3E /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = 09F669795C954A69B1D375F3 /* ZERO_CHECK */;
+                     targetProxy = 36B9D3C2E6124F33975BB22F /* PBXContainerItemProxy */;
+              };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+              913A80F80DFE4ECCADE6E77E /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out/build;
+                     };
+                     name = Debug;
+              };
+              F0E1F7F8EE9B4F238847A00C /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out/build;
+                     };
+                     name = Release;
+              };
+              029DDF01851742DC88571A2E /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out/build;
+                     };
+                     name = MinSizeRel;
+              };
+              59DFBE77153943F0977E9BB2 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out/build;
+                     };
+                     name = RelWithDebInfo;
+              };
+              1C52D6D481454004ABCD2656 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "     -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "     -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              B7DF23049DDE4F78AAEC7EB9 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 3;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              B757FFA38D394DFBA92925E2 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = s;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              80C31870B58E4999A7EBE180 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 2;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "       -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              9F911D3D911D4E55A3884E46 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              534E28E4BCF3457F99B5F61B /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              72BA561C47534378B286A972 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              2EE829B2538F4488A68ECEFF /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              5C4101C7392B4D4A878F75C1 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              45FCC6AA4B0942BC909F1BD0 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              B57BA94F368D4FD7B2BA7BE3 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              45894C05CFE741928E7BFD16 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/tri_mac/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+              4CF0E89218F7437992FDF13B /* Build configuration list for PBXProject  "NEWBIE" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            913A80F80DFE4ECCADE6E77E /* Debug */,
+                            F0E1F7F8EE9B4F238847A00C /* Release */,
+                            029DDF01851742DC88571A2E /* MinSizeRel */,
+                            59DFBE77153943F0977E9BB2 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              B47827E386934F6C9FC6D852 /* Build configuration list for PBXNativeTarget "main" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            1C52D6D481454004ABCD2656 /* Debug */,
+                            B7DF23049DDE4F78AAEC7EB9 /* Release */,
+                            B757FFA38D394DFBA92925E2 /* MinSizeRel */,
+                            80C31870B58E4999A7EBE180 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              F96CA53C1FE2499E88421FE3 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            9F911D3D911D4E55A3884E46 /* Debug */,
+                            534E28E4BCF3457F99B5F61B /* Release */,
+                            72BA561C47534378B286A972 /* MinSizeRel */,
+                            2EE829B2538F4488A68ECEFF /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              186A7794D8FB4939AC127FC5 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            5C4101C7392B4D4A878F75C1 /* Debug */,
+                            45FCC6AA4B0942BC909F1BD0 /* Release */,
+                            B57BA94F368D4FD7B2BA7BE3 /* MinSizeRel */,
+                            45894C05CFE741928E7BFD16 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+/* End XCConfigurationList section */
+       };
+       rootObject = A5F63CAE8F1B4821A9E042CC;
+}

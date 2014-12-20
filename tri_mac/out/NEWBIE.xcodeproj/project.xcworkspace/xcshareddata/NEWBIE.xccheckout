@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B95866CE-1D4C-46CB-A8FD-85262607CFEF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NEWBIE</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2719416E183AE1F5D19154A85F446DF75FD2E5FD</key>
+		<string>https://github.com/kroshwork/kroshking.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>tri_mac/out/NEWBIE.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2719416E183AE1F5D19154A85F446DF75FD2E5FD</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kroshwork/kroshking.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2719416E183AE1F5D19154A85F446DF75FD2E5FD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2719416E183AE1F5D19154A85F446DF75FD2E5FD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>kroshking</string>
+		</dict>
+	</array>
+</dict>
+</plist>
