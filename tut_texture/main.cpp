@@ -20,8 +20,7 @@ int main( int argc, char* args[] )
     glutInit( &argc, args );
 
     //Create OpenGL 2.1 context
-    glutInitContextVersion( 2, 1 );
-
+ 
     //Create Double Buffered Window
     glutInitDisplayMode( GLUT_DOUBLE );
     glutInitWindowSize( SCREEN_WIDTH, SCREEN_HEIGHT );

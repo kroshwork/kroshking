@@ -1,13 +1,25 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2013)
-and may not be redistributed without written permission.*/
-//Version: 001
 
 #ifndef LOPENGL_H
 #define LOPENGL_H
 
-#include <GL/freeglut.h>
+#include <errno.h>
+#include <math.h>
+#include <stdio.h>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <stdlib.h>
+
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+//#define __gl_h_
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <stdio.h>
+#include <GL/glut.h>
+#endif
 
 #endif
