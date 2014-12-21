@@ -1,0 +1,13 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(OLGA)
+
+ADD_DEFINITIONS(-O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline)
+
+FIND_PACKAGE(GLUT)
+FIND_PACKAGE(OpenGL REQUIRED)
+SET(GL_LIBS ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
+FILE(GLOB SRC "*.h" "*.cpp")
+#SET(SRC main.cpp)
+ADD_EXECUTABLE(main ${SRC})
+TARGET_LINK_LIBRARIES(main ${GL_LIBS} m)
+
