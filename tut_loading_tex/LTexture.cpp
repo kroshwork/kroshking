@@ -5,6 +5,7 @@ and may not be redistributed without written permission.*/
 #include "LTexture.h"
 #include "lodepng.h"
 #include <iostream>
+#include <cstdio>
 
 LTexture::LTexture()
 {
@@ -14,10 +15,19 @@ LTexture::LTexture()
     //Initialize texture dimensions
     mTextureWidth = 0;
     mTextureHeight = 0;
+    
+    set_mov(0,0);
+    base[0] = 0;
+    base[1] = 0;
+    
+    
+ ///   njInit();
+
 }
 
 LTexture::~LTexture()
 {
+  ///  njDone();
     //Free texture data if needed
     freeTexture();
 }
@@ -26,12 +36,14 @@ bool LTexture::loadTextureFromFile( std::string path )
 {
     //Texture loading success
     bool textureLoaded = false;
-
+    
+//THIS IS WORKING CODE FOR LADING PNG - create util_img.h OLGA
     std::vector<unsigned char> image; //the raw pixels
     unsigned width, height;
     
     //decode
     unsigned error = lodepng::decode(image, width, height, path);
+   
     
     //if there's an error, display it
     if(error)
@@ -42,6 +54,7 @@ bool LTexture::loadTextureFromFile( std::string path )
     {
         textureLoaded = loadTextureFromPixels32( (GLuint*)&image[0], (GLuint)width, (GLuint)height);
     }
+//OLGA
 
     //Report error
     if( !textureLoaded )
@@ -88,6 +101,7 @@ bool LTexture::loadTextureFromPixels32( GLuint* pixels, GLuint width, GLuint hei
     return true;
 }
 
+
 void LTexture::freeTexture()
 {
     //Delete texture
@@ -110,18 +124,32 @@ void LTexture::render( GLfloat x, GLfloat y )
         glLoadIdentity();
 
         //Move to rendering point
-        glTranslatef( x, y, 0.f );
+        glTranslatef( 0/*x*/, 0/*y*/, 0.f );
 
         //Set texture ID
         glBindTexture( GL_TEXTURE_2D, mTextureID );
 
         //Render textured quad
+        printf("mTextureWidth = %d\n", mTextureWidth );
+        printf("mTextureHeight = %d\n", mTextureHeight );
+        printf("base[0] = %d\n", base[0]);
+        printf("base[1] = %d\n", base[1]);
+        
         glBegin( GL_QUADS );
-            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f,            0.f );
-            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth,            0.f );
-            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth, mTextureHeight );
-            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f, mTextureHeight );
+            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f - base[0],            0.f  - base[1] );
+            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth - base[0],            0.f  - base[1] );
+            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth - base[0], mTextureHeight  - base[1] );
+            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f - base[0], mTextureHeight  - base[1] );
         glEnd();
+        /*
+        //Render textured quad
+        glBegin( GL_QUADS );
+            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f + mTextureWidth*1.5,            0.f );
+            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5,            0.f );
+            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5, mTextureHeight );
+            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f + mTextureWidth*1.5, mTextureHeight);
+        glEnd();
+*/
     }
 }
 

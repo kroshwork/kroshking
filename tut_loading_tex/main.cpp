@@ -14,8 +14,22 @@ Side Effects:
  -Sets glutTimerFunc
 */
 
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
 int main( int argc, char* args[] )
 {
+    char the_path[256];
+    
+    getcwd(the_path, 255);
+    strcat(the_path, "/");
+    strcat(the_path, args[0]);
+    
+    printf("%s\n", the_path);
+
+    
+    
     //Initialize FreeGLUT
     glutInit( &argc, args );
 
@@ -43,6 +57,7 @@ int main( int argc, char* args[] )
 
     //Set rendering function
     glutDisplayFunc( render );
+    glutMouseFunc(mouse);
 
     //Set main loop
     glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, 0 );

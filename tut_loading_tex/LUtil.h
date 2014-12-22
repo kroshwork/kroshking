@@ -9,8 +9,8 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 
 //Screen constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 900;
+const int SCREEN_HEIGHT = 700;
 const int SCREEN_FPS = 60;
 
 bool initGL();
@@ -54,6 +54,9 @@ Post Condition:
 Side Effects:
  -None
 */
+
+
+void mouse(int btn, int state, int x, int y);
 
 void render();
 /*

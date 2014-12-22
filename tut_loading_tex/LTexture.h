@@ -106,6 +106,22 @@ class LTexture
         Side Effects:
          -None
         */
+    
+    inline void set_mov(int x, int y)
+    {
+        if (x != 0)
+        {
+            base[0] += x; mov[0] = 0;
+        }
+        if (y != 0)
+        {
+            base[1] += y; mov[1] = 0;
+        }
+        
+    }
+    /**/
+    
+    
 
     private:
         //Texture name
@@ -114,6 +130,11 @@ class LTexture
         //Texture dimensions
         GLuint mTextureWidth;
         GLuint mTextureHeight;
+    
+    GLuint mov[2];
+    GLint base[2];
+    
+    
 };
 
 #endif
