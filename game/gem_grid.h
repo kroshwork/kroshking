@@ -1,8 +1,10 @@
 #ifndef GEM_GRID_H_
 #define GEM_GRID_H_
 
-#include "grid.h"
 #include <vector>
+
+#include "grid.h"
+#include "tex_loader.h"
 
 // Class - gems manager/container
 // (inherited from regular 2D grid)
@@ -23,19 +25,25 @@ public:
             int num_x,
             int num_y);
 
-    
-    
- 
+
+
+
 
 
 
 private:
 
-    std::vector<Gem*>       gems_       ; // Array of all grid gems
-    std::vector<unsigned>   tex_masks_  ; // Texture mask/ID assigned to gems
-
-    std::vector<size_t>     active_gems_; // Indexes of active gems
-    std::vector<size_t>     moving_gems_; // Indexes of moving gems
+    std::vector<Gem*>     gems_       ; // Array of all grid gems
+    std::vector<GemMask>  gem_masks_  ; // Gem mask/type
+    std::set<size_t>      moving_gems_; // Indexes of moving gems
 };
+
+
+
+struct Gem
+{
+    unsigned tex_mask_;
+    size_t   tex_idx_;
+
 
 #endif // GEM_GRID_H_

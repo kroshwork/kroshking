@@ -1,8 +1,6 @@
 #include "gem_grid.h"
 
 
-
-const int 
 //-----------------------------------------------------------------------------
 GemGrid::GemGrid(int min_x,
                  int min_y;
@@ -12,100 +10,116 @@ GemGrid::GemGrid(int min_x,
                  int num_y)
 {
     // Explicitly call parent constructor
-    Grid::Grid ( min_x,    
-                 min_y,  
-                 len_x,  
-                 len_y,  
-                 num_x,  
+    Grid::Grid ( min_x,
+                 min_y,
+                 len_x,
+                 len_y,
+                 num_x,
                  num_y );
 
     const size_t all_gems = static_cast<size_t>(num_x * num_y);
 
     // Resize the container so that it contains num_x * num_y 'gems'
-    this->gems_.resize(all_gems, NULL);   
-    // Set all textures to NONE
-    this->gem_masks_.resize(all_gems, TM_NONE);
+    this->gems_.resize(all_gems, NULL);
+    // Set all textures to -1 -> means texture is not set
+    this->gem_masks_.resize(all_gems, -1);
 
     // Request that the vector capacity be at least enough to contain num_x * num_y elements
     // We do not know yet what how many gems will be displayed - so just reserve
-    this->active_gems_.reserve(all_gems);   
-    this->moving_gems_.reserve(all_gems);   
+    this->active_gems_.reserve(all_gems);
+    this->moving_gems_.reserve(all_gems);
 }
 
-//template <int N>
-//unsigned foo_x(int i, int j, unsigned mask , int inc
-//{
-//    return foo_x<N-1>(i, j, this->get_masks[i + inc + this->num_x_ * j], inc + inc);
-//}
-//
-//template <>
-//unsigned foo_x<0>(int i, int j, unsigned mask , int inc
-//{
-//    return mask;
-//}
-
-
 //-----------------------------------------------------------------------------
-bool GemGrid::check_x_for_win(int i, int j, unsigned mask) const
+unsigned GemGrid::check_line(int i, int j, int i_inc, int j_inc, unsigned mask, std::set<int>* win_idx) const
 {
-    unsigned result_left = 0; 
-    if (i >= (WIN_LINE_SIZE - 1)) 
+// TODO change to use recursion
+    unsigned res = mask;
+
+    // Create look-up indexes array
+    static std::vector<int> idx_vec;
+    idx_vec.reserve(WIN_LINE_SIZE);
+    idx_vec.clear();
+    for (int n = 1; n < WIN_LINE_SIZE; ++n)
     {
-        result_left = mask & this->gem_masks[i - 1 + this->num_x_ * j] & this->gem_masks[i - 2 + this->num_x_ * j]; // TODO fix mask calc to generic
+        idx_vec.push_back(i + i_inc * n + this->num_x_ * (j + j_inc * n));
     }
-    unsigned result_right = 0; 
-    if (i <=  (this->num_x_ - WIN_LINE_SIZE)) 
+    for (auto n: idx_vec)
     {
-        result_right = mask & this->gem_masks[i + 1 + this->num_x_ * j] & this->gem_masks[i + 2 + this->num_x_ * j];  // TODO fix mask calc to generic    
+        res &= static_cast<unsigned>(this->gem_masks_[n]);
     }
-    return (result_left || result_right);
+    if (res > 0 && win_idx != NULL)
+    {
+        for (auto n: idx_vec)
+        {
+            win_idx->insert(n);
+        }
+    }
+    return res;
 }
 
-
 //-----------------------------------------------------------------------------
-//TODO add pointer to vector - if it's null dont add, if it's not null collect win lines
-bool GemGrid::check_y_for_win(int i, int j, unsigned mask) const
+bool GemGrid::find_win_lines(int i, int j, unsigned mask, std::set<size_t>* win_gems) const
 {
-    unsigned result_up = 0; 
-    if (j >= (WIN_LINE_SIZE - 1)) 
+    if (win_gems != NULL)
     {
-        result_up = mask & this->gem_masks[i + this->num_x_ * (j - 1)] & this->gem_masks[i + this->num_x_ *(j - 2)]; // TODO fix mask calc to generic
+        win_gems->clear();
     }
-    unsigned result_down = 0; 
-    if (i <=  (this->num_x_ - WIN_LINE_SIZE)) 
+
+    // Check left horizontal line
+    unsigned res_left = 0;
+    if (i >= (WIN_LINE_SIZE - 1))
     {
-        result_down = mask & this->gem_masks[i + this->num_x_ * (j + 1)] & this->gem_masks[i + this->num_x_ * (j + 2)];  // TODO fix mask calc to generic    
+        res_left = this->check_line(i, j, -1, 0, win_gems);
     }
-    return (result_up || result_down);
+
+    // Check right horizontal line
+    unsigned res_right = 0;
+    if (i <=  (this->num_x_ - WIN_LINE_SIZE))
+    {
+        res_left = this->check_line(i, j, 1, 0, win_gems);
+    }
+
+    // Check top vertical
+    unsigned res_up = 0;
+    if (j >= (WIN_LINE_SIZE - 1))
+    {
+        res_up = this->check_line(i, j, 0, -1, win_gems);
+    }
+
+    // Check bottom vertical
+    unsigned res_down = 0;
+    if (i <=  (this->num_x_ - WIN_LINE_SIZE))
+    {
+        res_up = this->check_line(i, j, 0, 1, win_gems);
+    }
+
+    return (res_up || res_down || res_left || res_right);
 }
 
-
-
 //-----------------------------------------------------------------------------
-void new_gem(size_t id, const TexLoader& texture)
+void new_gem(size_t id, const TexLoader& tex_loader)
 {
     int i = 0, j = 0;
     this->get_idxs(id, i, j);
 
-    GemMask gem_mask = texture.get_random();
-    bool found_in_x = check_x_for_win(i, gem_mask);
-    bool found_in_y = check_y_for_win(j, gem_mask);
+    GemMask gem_mask = tex_loader.get_random(); //TODO
+    bool lines_found = this->find_win_lines(i, j, gem_mask);
 
     while ((gem_mask != GM_NONE) && (found_in_x || found_in_y))
     {
-        gem_mask = texture.get_next();
-        found_in_x = check_x_for_win(i, j, static_cast<unsigned>(gem_mask));
-        found_in_y = check_y_for_win(i, j, static_cast<unsigned>(gem_mask));
+        gem_mask = tex_loader.get_next(); //TODO
+        lines_found = this->find_win_lines(i, j, static_cast<unsigned>(gem_mask), NULL);
     }
 
-    // If good texture was found, create new gem and update mask in mask array
+    // If fine texture was found, create new gem and update mask in mask array
     if (gem_mask != GM_NONE)
     {
         if (this->gems_[id] != NULL)
         {
             delete this->gems_[id];
         }
-        this->gems_[id] = new Gem(texture.get_current());
+        this->gems_[id] = new Gem(tex_loader.get_current()); //TODO
         this->gem_masks_[id] = gem_mask;
     }
     else
@@ -114,15 +128,14 @@ void new_gem(size_t id, const TexLoader& texture)
     }
 }
 
-    
+
 //-----------------------------------------------------------------------------
-void GemGrid::generate(const TexLoader& texture)
+void GemGrid::generate(const TexLoader& tex_loader)
 {
     const size_t all_gems = this->gems_.size();
     for (size_t i = 0; i < all_gems; ++i)
     {
-        this->new_gem(i, texture);
-        this->active_gems_.push_back(i);
+        this->new_gem(i, tex_loader);
     }
 }
 
