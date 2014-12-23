@@ -26,14 +26,13 @@ GemGrid::GemGrid(int min_x,
 
     // Request that the vector capacity be at least enough to contain num_x * num_y elements
     // We do not know yet what how many gems will be displayed - so just reserve
-    this->active_gems_.reserve(all_gems);
     this->moving_gems_.reserve(all_gems);
 }
 
 //-----------------------------------------------------------------------------
 unsigned GemGrid::check_line(int i, int j, int i_inc, int j_inc, unsigned mask, std::set<int>* win_idx) const
 {
-// TODO change to use recursion
+// TODO ? change to use recursion
     unsigned res = mask;
 
     // Create look-up indexes array
@@ -98,17 +97,17 @@ bool GemGrid::find_win_lines(int i, int j, unsigned mask, std::set<size_t>* win_
 }
 
 //-----------------------------------------------------------------------------
-void new_gem(size_t id, const TexLoader& tex_loader)
+void new_gem(size_t id, const Texture& tex_loader)
 {
     int i = 0, j = 0;
     this->get_idxs(id, i, j);
 
-    GemMask gem_mask = tex_loader.get_random(); //TODO
+    GemMask gem_mask = tex_loader.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask);
 
-    while ((gem_mask != GM_NONE) && (found_in_x || found_in_y))
+    while (found_in_x || found_in_y) // TODO - additional stop criteria might be needed
     {
-        gem_mask = tex_loader.get_next(); //TODO
+        gem_mask = tex_loader.get_next();
         lines_found = this->find_win_lines(i, j, static_cast<unsigned>(gem_mask), NULL);
     }
 
@@ -119,7 +118,7 @@ void new_gem(size_t id, const TexLoader& tex_loader)
         {
             delete this->gems_[id];
         }
-        this->gems_[id] = new Gem(tex_loader.get_current()); //TODO
+        this->gems_[id] = new Gem(tex_loader.get_current());
         this->gem_masks_[id] = gem_mask;
     }
     else
@@ -128,14 +127,13 @@ void new_gem(size_t id, const TexLoader& tex_loader)
     }
 }
 
-
 //-----------------------------------------------------------------------------
-void GemGrid::generate(const TexLoader& tex_loader)
+void GemGrid::generate_gems(void)
 {
     const size_t all_gems = this->gems_.size();
     for (size_t i = 0; i < all_gems; ++i)
     {
-        this->new_gem(i, tex_loader);
+        this->new_gem(i, this->tex_loader_);
     }
 }
 
