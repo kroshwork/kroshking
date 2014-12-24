@@ -1,15 +1,20 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
+#include <iostream>
 #include "global_consts.h"
 
 
-void main_loop( int val );
+void main_loop( int v )
+{
+    update();
+    display();
+    glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, val );
+}
+
 
 
 int main( int argc, char* args[] )
 {
+    /* TODO
+///////////
     char the_path[256];
     
     getcwd(the_path, 255);
@@ -17,51 +22,45 @@ int main( int argc, char* args[] )
     strcat(the_path, args[0]);
     
     printf("%s\n", the_path);
-
+//////////
+    */
     
+    // 1. GL initialization
     
-    //Initialize FreeGLUT
     glutInit( &argc, args );
+    glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH );
+    glutInitWindowSize( SCREEN_WIDTH, SCREEN_HEIGHT ); //TODO fullscreen? may be?
+    glutCreateWindow( "kroshking" );
 
-    //Create Double Buffered Window
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    if( !init() )
+    {
+        std::cout << "Failed to initialize GL" << std::endl;
+        return EXIT_FAILURE;
+    }
+
     
-    glutInitWindowSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-    glutCreateWindow( "OpenGL" );
-
-    //Do post window/context creation initialization
-    if( !initGL() )
+    // 2. Load game assets
+    // I.e load textures, init game engine - GemGrid
+    
+    if( !load_assets() )
     {
-        printf( "Unable to initialize graphics library!\n" );
-        return 1;
+        std::cout << "Failed to load game assets" <<std::endl;
+        return EXIT_FAILURE; // TODO - exit codes
     }
 
-    //Load media
-    if( !loadMedia() )
-    {
-        printf( "Unable to load media!\n" );
-        return 2;
-    }
+    
+    // 3. Assign call-back-s
+    
+    glutDisplayFunc( display );
+    glutMouseFunc( mouse );
+    glutKeyboardFunc( keyboard );
 
-    //Set rendering function
-    glutDisplayFunc( render );
-    glutMouseFunc(mouse);
-
-    //Set main loop
-    glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, 0 );
-
-    //Start GLUT main loop
+    
+    // 4. Set and start main loop
+    
+    glutTimerFunc( 1000 / SCREEN_FPS, main_loop, 0 );
     glutMainLoop();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
-void runMainLoop( int val )
-{
-    //Frame logic
-    update();
-    render();
-
-    //Run frame one more time
-    glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, val );
-}

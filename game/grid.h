@@ -36,19 +36,21 @@ public:
 
 protected:
 
-    bool init(int min_x,
+    // Initialize grid
+    // return -1 on error
+    int init( int min_x,
               int min_y;
               int len_x,
               int len_y;
               int num_x,
-              int num_y);
+              int num_y );
 
 
  private:
 
     int min_x_; // Origin coordinates
     int min_y_;
-    int max_x_; // Max coordinates
+    int max_x_; // Max coordinates (calculated values)
     int max_y_;
     int len_x_; // x,y sizes of one grid face
     int len_y_;

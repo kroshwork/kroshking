@@ -1,73 +1,33 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2013)
-and may not be redistributed without written permission.*/
-//Version: 006
-
-#ifndef LUTIL_H
-#define LUTIL_H
-
-#include "LOpenGL.h"
-#include <stdio.h>
-
-//Screen constants
-const int SCREEN_WIDTH = 900;
-const int SCREEN_HEIGHT = 700;
-const int SCREEN_FPS = 60;
-
-bool initGL();
-/*
-Pre Condition:
- -A valid OpenGL context
-Post Condition:
- -Initializes viewport, matrices and clear color
- -Initializes DevIL
- -Reports to console if there was an OpenGL error
- -Reports to console if there was a DevIL error
- -Returns false if there was an error in initialization
-Side Effects:
- -Sets viewport to the fill rendering area
- -Projection matrix is set to an orthographic matrix
- -Modelview matrix is set to identity matrix
- -Matrix mode is set to modelview
- -Clear color is set to black
- -Texturing is enabled
- -Sets DevIL clear color to transparent white
-*/
-
-bool loadMedia();
-/*
-Pre Condition:
- -A valid OpenGL context
-Post Condition:
- -Loads media to use in the program
- -Reports to console if there was an error in loading the media
- -Returns true if the media loaded successfully
-Side Effects:
- -None
-*/
-
-void update();
-/*
-Pre Condition:
- -None
-Post Condition:
- -Does per frame logic
-Side Effects:
- -None
-*/
+#ifndef UTILS_H_
+#define UTILS_H_
 
 
+//TODO cope-past the file with name
+
+/// \brief Initialize viewport, matrices, clear color, enable texturing
+/// \return false - on error, true - otherwise
+bool init( void );
+
+/// \brief Load assets to enable the game engine (gem_grid)
+/// \return false - on error, true - otherwise
+bool load_assets( void );
+
+// Call-backs
+
+/// \brief Display scenes
+void display( void );
+
+/// \brief Update/per-frame logic
+void update( void );
+
+/// \brief Handles mouse events
+/// \param btn TODO
+/// \param state TODO
+/// \param x TODO
+/// \param y TODO
 void mouse(int btn, int state, int x, int y);
 
-void render();
-/*
-Pre Condition:
- -A valid OpenGL context
- -Active modelview matrix
-Post Condition:
- -Renders the scene
-Side Effects:
- -Clears the color buffer
- -Swaps the front/back buffer
-*/
+//TODO keyboard
+
 
 #endif
