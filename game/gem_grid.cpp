@@ -17,7 +17,7 @@ GemGrid& GemGrid::get_instace(void)
 }
 
 //-----------------------------------------------------------------------------
-bool GemGrid::load_bg_tex( const std::string fname )
+bool GemGrid::load_bg_tex( const std::string& fname )
 {
     return this->tex_loader_.load_bg(fname);
 }
@@ -38,6 +38,19 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
     }
     return result;
 }
+
+//-----------------------------------------------------------------------------
+void GemGrid::draw( void )
+{
+    ////Calculate centered offsets
+    //XXX OLGA GLfloat x = ( SCREEN_WIDTH - gLoadedTexture.textureWidth() ) / 2.f;
+    //XXX OLGA GLfloat y = ( SCREEN_HEIGHT - gLoadedTexture.textureHeight() ) / 2.f;
+    
+ 
+
+}
+ 
+
 
 //-----------------------------------------------------------------------------
 GemGrid::GemGrid(int min_x,

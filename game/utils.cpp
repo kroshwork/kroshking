@@ -67,10 +67,6 @@ void display( void )
     //Clear color buffer
     glClear( GL_COLOR_BUFFER_BIT );
     
-    ////Calculate centered offsets
-    //GLfloat x = ( SCREEN_WIDTH - gLoadedTexture.textureWidth() ) / 2.f;
-    //GLfloat y = ( SCREEN_HEIGHT - gLoadedTexture.textureHeight() ) / 2.f;
-    
     //Render texture
     GEM_GRID.draw();
     
@@ -78,75 +74,93 @@ void display( void )
     glutSwapBuffers();
 }
 
-
-
-
 //-----------------------------------------------------------------------------
 void update( void )
 {
+    //TODO WRITE ME    
+}
+
+//-----------------------------------------------------------------------------
+void mouse(int btn, int state, int x, int y)
+{
+    //TODO WRITE ME
     
 }
 
-#include <complex>
-int gPreviosLoc[2] = {0,0};
-static bool gJustMoved = false;
-static bool gWasLocationInit = false;
-
-void mouse(int btn, int state, int x, int y)
+//-----------------------------------------------------------------------------
+void keyboard(unsigned char key, int, int)
 {
-    if (!gWasLocationInit) {
-        gWasLocationInit = true;
-        gPreviosLoc[0] = x;
-        gPreviosLoc[1] = y;
-    }
-    printf("gJustMoved = %d\n", gJustMoved);
-    //_btn in [GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, GLUT_RIGHT_BUTTON]
-    //_state in [GLUT_UP, GLUT_DOWN]
-    if ((state == GLUT_DOWN || state == GLUT_UP) && (btn == GLUT_LEFT_BUTTON || btn == GLUT_RIGHT_BUTTON))
+    switch (key)
     {
-        // Detect moving direction - in our case it may be x or y
-        int delta_x = gPreviosLoc[0] - x; //OLGA THIS CODE IS NEEDED FOR THE TEST
-        int delta_y = gPreviosLoc[1] - y;
-        int abs_delta_x = std::abs(delta_x);
-        int abs_delta_y = std::abs(delta_y);
-        printf("delta_x = %d\n", delta_x);
-        printf("delta_y = %d\n", delta_y);
-        if (abs_delta_x > abs_delta_y)
+        case 27:
         {
-            // move in horizontally
-            //if (abs_delta_x >= gLoadedTexture.get_min_mov() && abs_delta_x <= gLoadedTexture.get_max_mov())
-            {
-                gLoadedTexture.set_mov(delta_x,0);
-                gJustMoved = true;
-                gPreviosLoc[0] = x;
-                gPreviosLoc[1] = y;
-            }
-            //else
-            //{
-            //    gJustMoved = false;
-            //}
+        //TODO - do exit    glutLeaveMainLoop();
+            exit(0);
+            return;
         }
-        else if (abs_delta_y > abs_delta_x)
-        {
-            // move in horizontally
-            //if (abs_delta_y >= gLoadedTexture.get_min_mov() && abs_delta_y <= gLoadedTexture.get_max_mov())
-            {
-                gLoadedTexture.set_mov(0,delta_y);
-                gJustMoved = true;
-                gPreviosLoc[0] = x;
-                gPreviosLoc[1] = y;
-            }
-            //else
-            //{
-            //    gJustMoved = false;
-            //}
-   
-        }
-        else
-        {
-            gJustMoved = false;
-        }
-        
     }
 }
 
+// #include <complex>
+// int gPreviosLoc[2] = {0,0};
+// static bool gJustMoved = false;
+// static bool gWasLocationInit = false;
+// 
+// void mouse(int btn, int state, int x, int y)
+// {
+//     if (!gWasLocationInit) {
+//         gWasLocationInit = true;
+//         gPreviosLoc[0] = x;
+//         gPreviosLoc[1] = y;
+//     }
+//     printf("gJustMoved = %d\n", gJustMoved);
+//     //_btn in [GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, GLUT_RIGHT_BUTTON]
+//     //_state in [GLUT_UP, GLUT_DOWN]
+//     if ((state == GLUT_DOWN || state == GLUT_UP) && (btn == GLUT_LEFT_BUTTON || btn == GLUT_RIGHT_BUTTON))
+//     {
+//         // Detect moving direction - in our case it may be x or y
+//         int delta_x = gPreviosLoc[0] - x; //OLGA THIS CODE IS NEEDED FOR THE TEST
+//         int delta_y = gPreviosLoc[1] - y;
+//         int abs_delta_x = std::abs(delta_x);
+//         int abs_delta_y = std::abs(delta_y);
+//         printf("delta_x = %d\n", delta_x);
+//         printf("delta_y = %d\n", delta_y);
+//         if (abs_delta_x > abs_delta_y)
+//         {
+//             // move in horizontally
+//             //if (abs_delta_x >= gLoadedTexture.get_min_mov() && abs_delta_x <= gLoadedTexture.get_max_mov())
+//             {
+//                 gLoadedTexture.set_mov(delta_x,0);
+//                 gJustMoved = true;
+//                 gPreviosLoc[0] = x;
+//                 gPreviosLoc[1] = y;
+//             }
+//             //else
+//             //{
+//             //    gJustMoved = false;
+//             //}
+//         }
+//         else if (abs_delta_y > abs_delta_x)
+//         {
+//             // move in horizontally
+//             //if (abs_delta_y >= gLoadedTexture.get_min_mov() && abs_delta_y <= gLoadedTexture.get_max_mov())
+//             {
+//                 gLoadedTexture.set_mov(0,delta_y);
+//                 gJustMoved = true;
+//                 gPreviosLoc[0] = x;
+//                 gPreviosLoc[1] = y;
+//             }
+//             //else
+//             //{
+//             //    gJustMoved = false;
+//             //}
+//    
+//         }
+//         else
+//         {
+//             gJustMoved = false;
+//         }
+//         
+//     }
+// }
+// 

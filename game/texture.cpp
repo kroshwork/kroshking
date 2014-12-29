@@ -9,14 +9,54 @@
 
 
 //-----------------------------------------------------------------------------
-Texture::Texture(void) : id_(0), width_(0), height_(0), mask_(0)
-{  }
+Texture::Texture(void) : 
+    current_tex_(0), bg_id_(0), bg_descr_(),
+    id_(std::vector<GLuint>()), descr_(std::vector<TexDescr>())
+{
+
+}
 
 //-----------------------------------------------------------------------------
 Texture::~Texture(void)
 {
     this->clear();
 }
+
+//-----------------------------------------------------------------------------
+bool Texture::load_bg( const std::string& fname )
+{
+    int result = -1;
+    std::vector<unsigned char> image; //the raw pixels
+    GLuint w = 0, h = 0;
+
+    // decode
+    unsigned error = lodepng::decode(image, width, height, path);
+
+    // if there's an error, display it
+    if(error)
+    {
+        std::cerr << "Texture :: decoder error " << error << " : "
+                  << lodepng_error_text(error) << std::endl;
+    }
+    else
+    {
+        // get Texture ID from OpenGl
+        GLuint tex_id = load_texture( (GLuint*)&image[0], w, h );
+        if (tex_id > 0)
+        {
+            this->descr_.push_back( TexDescr( mask, w, h ) );
+            this->id_.push_back( tex_id );
+            result = this->id_.size() - 1;
+        }
+        else
+        {
+            result = -1;
+        }
+    }
+    return result;
+    return this->tex_loader_.load_bg(fname);
+}
+
 
 //-----------------------------------------------------------------------------
 int Texture::add ( unsigned mask, const std::string& png_file )

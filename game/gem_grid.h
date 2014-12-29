@@ -31,7 +31,7 @@ public:
     ///        assign ID, reports about errors
     /// \param fname backgroung file - path+name.png
     /// \return true - on success, false - on failure
-    bool load_bg_tex( const std::string fname );
+    bool load_bg_tex( const std::string& fname );
     
     /// \brief Load gem textures.
     /// \param tex_map gem textures map, where key is unsigned mask and value is file name
@@ -39,7 +39,7 @@ public:
     bool load_gems_tex( const std::map<unsigned, std::string>& tex_map );
 
     /// \brief Draw scene - calculate textures pozition, 
-    void draw( void );
+    void draw( void ); //TODO const/not const??
     
     
     bool load_assets()

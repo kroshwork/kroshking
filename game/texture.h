@@ -55,7 +55,7 @@ public:
 
 private:
 
-    mutable size_t current_tex;
+    mutable size_t current_tex_;
 
     // Background texture (this can be expanded to multiple backgrounds if needed)
     GLuint   bg_id_   ;

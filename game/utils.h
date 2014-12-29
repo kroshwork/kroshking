@@ -2,7 +2,7 @@
 #define UTILS_H_
 
 
-//TODO cope-past the file with name
+//TODO cope-past the file with name - I forgot what it was about
 
 /// \brief Initialize viewport, matrices, clear color, enable texturing
 /// \return false - on error, true - otherwise
@@ -28,6 +28,6 @@ void update( void );
 void mouse(int btn, int state, int x, int y);
 
 //TODO keyboard
-
+void keyboard(unsigned char key, int, int);
 
 #endif
