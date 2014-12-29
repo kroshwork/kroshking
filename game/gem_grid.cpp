@@ -1,5 +1,43 @@
 #include "gem_grid.h"
 
+#include <iostream>
+
+//-----------------------------------------------------------------------------
+GemGrid::~GemGrid(void)
+{
+    // TODO
+    
+}
+
+//-----------------------------------------------------------------------------
+GemGrid& GemGrid::get_instace(void)
+{
+    static GemGrid instance;
+    return instance;
+}
+
+//-----------------------------------------------------------------------------
+bool GemGrid::load_bg_tex( const std::string fname )
+{
+    return this->tex_loader_.load_bg(fname);
+}
+
+//-----------------------------------------------------------------------------
+bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
+{
+    bool result = true;
+    std::map<unsigned, std::string>::const_iterator it = tex_map.cbegin();
+    std::map<unsigned, std::string>::const_iterator end = tex_map.cend();
+    for (; it != end; ++it)
+    {
+        if (this->tex_loader_.add(it->first, it->second) < 0)
+        {
+            std::cerr << "GemGrid :: unable to load texture from " << it->second << std::endl;
+            result = false;
+        }
+    }
+    return result;
+}
 
 //-----------------------------------------------------------------------------
 GemGrid::GemGrid(int min_x,
@@ -97,12 +135,12 @@ bool GemGrid::find_win_lines(int i, int j, unsigned mask, std::set<size_t>* win_
 }
 
 //-----------------------------------------------------------------------------
-void new_gem(size_t id, const Texture& tex_loader)
+void new_gem(size_t idx, const Texture& tex_loader)
 {
     int i = 0, j = 0;
-    this->get_idxs(id, i, j);
+    this->get_idxs(idx, i, j);
 
-    GemMask gem_mask = tex_loader.get_random();
+    unsigned gem_mask = tex_loader.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask);
 
     while (found_in_x || found_in_y) // TODO - additional stop criteria might be needed
@@ -112,11 +150,11 @@ void new_gem(size_t id, const Texture& tex_loader)
     }
 
     // If fine texture was found, create new gem and update mask in mask array
-    if (gem_mask != GM_NONE)
+    if (gem_mask != 0)
     {
         if (this->gems_[id] != NULL)
         {
-            delete this->gems_[id];
+            delete this->gems_[idx];
         }
         this->gems_[id] = new Gem(tex_loader.get_current());
         this->gem_masks_[id] = gem_mask;

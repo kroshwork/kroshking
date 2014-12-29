@@ -1,62 +1,90 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2013)
-and may not be redistributed without written permission.*/
-//Version: 006
+#include "utils.h"
+#include "gem_grid.h"
 
-#include "LUtil.h"
-#include "LTexture.h"
-
-//File loaded texture
-LTexture gLoadedTexture;
-
-bool initGL()
+//-----------------------------------------------------------------------------
+bool init( void )
 {
-    //Set the viewport
+    // Set the viewport
     glViewport( 0.f, 0.f, SCREEN_WIDTH, SCREEN_HEIGHT );
 
-    //Initialize Projection Matrix
+    // Initialize Projection Matrix
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
     glOrtho( 0.0, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0, 1.0, -1.0 );
 
-    //Initialize Modelview Matrix
+    // Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
-    //Initialize clear color
-    glClearColor( 0.f, 0.f, 0.f, 1.f );
+    // Initialize clear color
+    glClearColor( 0.f, 0.f, 0.f, 0.f );
 
-    //Enable texturing
+    // Enable texturing
     glEnable( GL_TEXTURE_2D );
 
-    //Check for error
-    GLenum error = glGetError();
-    if( error != GL_NO_ERROR )
-    {
-        printf( "Error initializing OpenGL! %s\n", gluErrorString( error ) );
-        return false;
-    }
-
+    // Check for error
+    GLenum err = glGetError();
+    bool result = (err == GL_NO_ERROR);
     
-    return true;
+    if (!result)
+    {
+        std::cerr << "utils :: failed to initialize OpenGL, error : ";
+        std::cerr << gluErrorString( err ) << std::endl;
+    }
+    
+    return result;
 }
 
-bool loadMedia()
+//-----------------------------------------------------------------------------
+bool load_assets( void )
 {
-    //Load texture
-    if( !gLoadedTexture.loadTextureFromFile( "/Users/vasya/king_test/kroshking/tut_loading_tex/img/BackGround.png" ) )
+
+    if ( !GEM_GRID.load_bg_tex( IMG_PATH + std::string("BackGround.png") ) )
     {
-        printf( "Unable to load file texture!\n" );
+        std::cerr << "load_assets :: Failed to load background texture" << std::endl;
+        return false;
+    }
+
+    if ( !GEM_GRID.load_gems_tex(
+                                  { { GM_BLUE   }, { IMG_PATH + std::string( "Blue.png"   ) }
+                                    { GM_GREEN  }, { IMG_PATH + std::string( "Green.png"  ) }
+                                    { GM_PURPLE }, { IMG_PATH + std::string( "Purple.png" ) }
+                                    { GM_RED    }, { IMG_PATH + std::string( "Red.png"    ) }
+                                    { GM_YELLOW }, { IMG_PATH + std::string( "Yellow.png" ) } } ))
+    {
+        std::cerr << "load_assets :: Failed to load gem textures" << std::endl;
         return false;
     }
 
     return true;
 }
 
-void update()
-{
-    //TODO here we determin which object is touched
-    //and update the displaying data
+//TODO rescale screen after downloading background - or do something else - just think about it
 
+//-----------------------------------------------------------------------------
+void display( void )
+{
+    //Clear color buffer
+    glClear( GL_COLOR_BUFFER_BIT );
+    
+    ////Calculate centered offsets
+    //GLfloat x = ( SCREEN_WIDTH - gLoadedTexture.textureWidth() ) / 2.f;
+    //GLfloat y = ( SCREEN_HEIGHT - gLoadedTexture.textureHeight() ) / 2.f;
+    
+    //Render texture
+    GEM_GRID.draw();
+    
+    //Update screen
+    glutSwapBuffers();
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+void update( void )
+{
+    
 }
 
 #include <complex>
@@ -122,19 +150,3 @@ void mouse(int btn, int state, int x, int y)
     }
 }
 
-
-void render()
-{
-    //Clear color buffer
-    glClear( GL_COLOR_BUFFER_BIT );
-
-    //Calculate centered offsets
-    GLfloat x = ( SCREEN_WIDTH - gLoadedTexture.textureWidth() ) / 2.f;
-    GLfloat y = ( SCREEN_HEIGHT - gLoadedTexture.textureHeight() ) / 2.f;
-
-    //Render texture
-    gLoadedTexture.render( x, y );
-
-    //Update screen
-    glutSwapBuffers();
-}

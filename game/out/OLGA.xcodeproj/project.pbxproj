@@ -1,0 +1,732 @@
+// !$*UTF8*$!
+{
+       archiveVersion = 1;
+       classes = {
+       };
+       objectVersion = 46;
+       objects = {
+
+/* Begin PBXAggregateTarget section */
+              61078D0D7DBE42439E45D44B /* ALL_BUILD */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = CC75773DEF5746F6B249C78F /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+                     buildPhases = (
+                            2A0B30901ED94B4C95B9434C /* CMake Rules */,
+                     );
+                     dependencies = (
+                            0B2A8371C9084F8DB0424103 /* PBXTargetDependency */,
+                            303A09CA68DC4583A3E97D43 /* PBXTargetDependency */,
+                     );
+                     name = ALL_BUILD;
+                     productName = ALL_BUILD;
+              };
+              C5BFC7777ABA4C2E83CB1E0B /* ZERO_CHECK */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = 851A5EDEB54A4CA8A4C26FD3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+                     buildPhases = (
+                            665938234F0B4BD1A840E0DA /* CMake Rules */,
+                     );
+                     dependencies = (
+                     );
+                     name = ZERO_CHECK;
+                     productName = ZERO_CHECK;
+              };
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+EEC175A6234C43A5AFA1CAED /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B3CB64EEFC60400283F95051 /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */; settings = { COMPILER_FLAGS = ""; }; };
+427A86F28DD94626B97E6CFF /* /Users/vasya/king_test/kroshking/game/LOpenGL.h */ = {isa = PBXBuildFile; fileRef = 22C85ADF874041499BCA6015 /* /Users/vasya/king_test/kroshking/game/LOpenGL.h */; settings = { COMPILER_FLAGS = ""; }; };
+28A452B0F6F24D6BBAACFF8E /* /Users/vasya/king_test/kroshking/game/gem_grid.cpp */ = {isa = PBXBuildFile; fileRef = 5A86885B45D34A4691F1927E /* /Users/vasya/king_test/kroshking/game/gem_grid.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+C02464826B3E4627BE47AAD7 /* /Users/vasya/king_test/kroshking/game/gem_grid.h */ = {isa = PBXBuildFile; fileRef = C334A32F606D4A2FAD0ED11C /* /Users/vasya/king_test/kroshking/game/gem_grid.h */; settings = { COMPILER_FLAGS = ""; }; };
+A4C9A8EFD58B4F0C897DBFCB /* /Users/vasya/king_test/kroshking/game/global_consts.h */ = {isa = PBXBuildFile; fileRef = E6E2FFE91D104FEF864D64C9 /* /Users/vasya/king_test/kroshking/game/global_consts.h */; settings = { COMPILER_FLAGS = ""; }; };
+0E966B041F95494CA40E4AAA /* /Users/vasya/king_test/kroshking/game/grid.cpp */ = {isa = PBXBuildFile; fileRef = 53C9F04854F44368B098DE58 /* /Users/vasya/king_test/kroshking/game/grid.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+F963DDFB7F8A41909CC41D5F /* /Users/vasya/king_test/kroshking/game/grid.h */ = {isa = PBXBuildFile; fileRef = 81EB04F11F364A22AE5A9504 /* /Users/vasya/king_test/kroshking/game/grid.h */; settings = { COMPILER_FLAGS = ""; }; };
+0FD990F523024EA9991F61F8 /* /Users/vasya/king_test/kroshking/game/lodepng.cpp */ = {isa = PBXBuildFile; fileRef = D2224741DB8C4442B7FE2D4D /* /Users/vasya/king_test/kroshking/game/lodepng.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+72E2CE759CC649E9B6062039 /* /Users/vasya/king_test/kroshking/game/lodepng.h */ = {isa = PBXBuildFile; fileRef = F11C730336A240698A7EFB1B /* /Users/vasya/king_test/kroshking/game/lodepng.h */; settings = { COMPILER_FLAGS = ""; }; };
+D7146CD7980B470FB526C263 /* /Users/vasya/king_test/kroshking/game/main.cpp */ = {isa = PBXBuildFile; fileRef = 45C4CB226F6446D3B3EE0DFB /* /Users/vasya/king_test/kroshking/game/main.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+A17F3494A94C4C7F8CAA957C /* /Users/vasya/king_test/kroshking/game/texture.cpp */ = {isa = PBXBuildFile; fileRef = 4355118795BF48BD94C9581E /* /Users/vasya/king_test/kroshking/game/texture.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+C75DAC790ABE45A482494A37 /* /Users/vasya/king_test/kroshking/game/texture.h */ = {isa = PBXBuildFile; fileRef = 2856266B27E141AA90ACC444 /* /Users/vasya/king_test/kroshking/game/texture.h */; settings = { COMPILER_FLAGS = ""; }; };
+3B8E142B84B24E0DB24C8CFB /* /Users/vasya/king_test/kroshking/game/utils.cpp */ = {isa = PBXBuildFile; fileRef = 0986778896F948209D8B19AC /* /Users/vasya/king_test/kroshking/game/utils.cpp */; settings = { COMPILER_FLAGS = ""; }; };
+BCFBF4EBF7CB480D9CFBC692 /* /Users/vasya/king_test/kroshking/game/utils.h */ = {isa = PBXBuildFile; fileRef = F027605F26DE4A2080E4EA9A /* /Users/vasya/king_test/kroshking/game/utils.h */; settings = { COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+              C8B6F91C70264FC5BC300427 /*  */ = {
+                     isa = PBXBuildStyle;
+              };
+              0224A896EF3B453093D5A15C /* Debug */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Debug;
+              };
+              1B8E836FEFE74DB8AEF776EC /* Release */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Release;
+              };
+              4111B69D3DC7415BA5CA9F88 /* MinSizeRel */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = MinSizeRel;
+              };
+              00A9CDF4C9CB4CDBA8E24EF6 /* RelWithDebInfo */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+              6B4B31930F4B4F358011D362 /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = 4FD08CBD9E734D26A0AC3F60 /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = C5BFC7777ABA4C2E83CB1E0B;
+                     remoteInfo = ZERO_CHECK;
+              };
+              A791C5CC4D1940248986325A /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = 4FD08CBD9E734D26A0AC3F60 /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = C5BFC7777ABA4C2E83CB1E0B;
+                     remoteInfo = ZERO_CHECK;
+              };
+              F52C186A7CAD4E1AAB7E6655 /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = 4FD08CBD9E734D26A0AC3F60 /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = 5FAC1F84CD1547DDA19D8E45;
+                     remoteInfo = main;
+              };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+B3CB64EEFC60400283F95051 /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+22C85ADF874041499BCA6015 /* /Users/vasya/king_test/kroshking/game/LOpenGL.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "LOpenGL.h"; path = "LOpenGL.h"; sourceTree = SOURCE_ROOT; };
+5A86885B45D34A4691F1927E /* /Users/vasya/king_test/kroshking/game/gem_grid.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "gem_grid.cpp"; path = "gem_grid.cpp"; sourceTree = SOURCE_ROOT; };
+C334A32F606D4A2FAD0ED11C /* /Users/vasya/king_test/kroshking/game/gem_grid.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "gem_grid.h"; path = "gem_grid.h"; sourceTree = SOURCE_ROOT; };
+E6E2FFE91D104FEF864D64C9 /* /Users/vasya/king_test/kroshking/game/global_consts.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "global_consts.h"; path = "global_consts.h"; sourceTree = SOURCE_ROOT; };
+53C9F04854F44368B098DE58 /* /Users/vasya/king_test/kroshking/game/grid.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "grid.cpp"; path = "grid.cpp"; sourceTree = SOURCE_ROOT; };
+81EB04F11F364A22AE5A9504 /* /Users/vasya/king_test/kroshking/game/grid.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "grid.h"; path = "grid.h"; sourceTree = SOURCE_ROOT; };
+D2224741DB8C4442B7FE2D4D /* /Users/vasya/king_test/kroshking/game/lodepng.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "lodepng.cpp"; path = "lodepng.cpp"; sourceTree = SOURCE_ROOT; };
+F11C730336A240698A7EFB1B /* /Users/vasya/king_test/kroshking/game/lodepng.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "lodepng.h"; path = "lodepng.h"; sourceTree = SOURCE_ROOT; };
+45C4CB226F6446D3B3EE0DFB /* /Users/vasya/king_test/kroshking/game/main.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "main.cpp"; path = "main.cpp"; sourceTree = SOURCE_ROOT; };
+4355118795BF48BD94C9581E /* /Users/vasya/king_test/kroshking/game/texture.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "texture.cpp"; path = "texture.cpp"; sourceTree = SOURCE_ROOT; };
+2856266B27E141AA90ACC444 /* /Users/vasya/king_test/kroshking/game/texture.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "texture.h"; path = "texture.h"; sourceTree = SOURCE_ROOT; };
+0986778896F948209D8B19AC /* /Users/vasya/king_test/kroshking/game/utils.cpp */ = {isa = PBXFileReference; explicitFileType = "sourcecode.cpp.cpp"; fileEncoding = 4; name = "utils.cpp"; path = "utils.cpp"; sourceTree = SOURCE_ROOT; };
+F027605F26DE4A2080E4EA9A /* /Users/vasya/king_test/kroshking/game/utils.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "utils.h"; path = "utils.h"; sourceTree = SOURCE_ROOT; };
+692BC8A608EE4711868CA1B9 /* main */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = main; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+4B627D8E534843B9A2452E7A /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+C35968A3ABC3402595CD8054 /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+              14EB432532B84778B5F07D70  = {
+                     isa = PBXGroup;
+                     children = (
+                            84D16B385B5441978302BD2D /* Sources */,
+                            45ABC8EE670F49248DF4D4DF /* Resources */,
+                            13E59A19CD5B4161B18FC407 /* Products */,
+                     );
+                     sourceTree = "<group>";
+              };
+              84D16B385B5441978302BD2D /* Sources */ = {
+                     isa = PBXGroup;
+                     children = (
+                            5ED93A7BA27542609E6A2977 /* main */,
+                            2B07F9BD9090476EA611270B /* ALL_BUILD */,
+                            6091359FA8A84C7BA96BFD9F /* ZERO_CHECK */,
+                     );
+                     name = Sources;
+                     sourceTree = "<group>";
+              };
+              45ABC8EE670F49248DF4D4DF /* Resources */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = Resources;
+                     sourceTree = "<group>";
+              };
+              5ED93A7BA27542609E6A2977 /* main */ = {
+                     isa = PBXGroup;
+                     children = (
+                            D6E556A090894F39868D2606 /* Header Files */,
+                            DCD3E4B2513C4ADE80EB3C5E /* Source Files */,
+                            B3CB64EEFC60400283F95051 /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */,
+                     );
+                     name = main;
+                     sourceTree = "<group>";
+              };
+              D6E556A090894F39868D2606 /* Header Files */ = {
+                     isa = PBXGroup;
+                     children = (
+                            22C85ADF874041499BCA6015 /* /Users/vasya/king_test/kroshking/game/LOpenGL.h */,
+                            C334A32F606D4A2FAD0ED11C /* /Users/vasya/king_test/kroshking/game/gem_grid.h */,
+                            E6E2FFE91D104FEF864D64C9 /* /Users/vasya/king_test/kroshking/game/global_consts.h */,
+                            81EB04F11F364A22AE5A9504 /* /Users/vasya/king_test/kroshking/game/grid.h */,
+                            F11C730336A240698A7EFB1B /* /Users/vasya/king_test/kroshking/game/lodepng.h */,
+                            2856266B27E141AA90ACC444 /* /Users/vasya/king_test/kroshking/game/texture.h */,
+                            F027605F26DE4A2080E4EA9A /* /Users/vasya/king_test/kroshking/game/utils.h */,
+                     );
+                     name = "Header Files";
+                     sourceTree = "<group>";
+              };
+              DCD3E4B2513C4ADE80EB3C5E /* Source Files */ = {
+                     isa = PBXGroup;
+                     children = (
+                            5A86885B45D34A4691F1927E /* /Users/vasya/king_test/kroshking/game/gem_grid.cpp */,
+                            53C9F04854F44368B098DE58 /* /Users/vasya/king_test/kroshking/game/grid.cpp */,
+                            D2224741DB8C4442B7FE2D4D /* /Users/vasya/king_test/kroshking/game/lodepng.cpp */,
+                            45C4CB226F6446D3B3EE0DFB /* /Users/vasya/king_test/kroshking/game/main.cpp */,
+                            4355118795BF48BD94C9581E /* /Users/vasya/king_test/kroshking/game/texture.cpp */,
+                            0986778896F948209D8B19AC /* /Users/vasya/king_test/kroshking/game/utils.cpp */,
+                     );
+                     name = "Source Files";
+                     sourceTree = "<group>";
+              };
+              2B07F9BD9090476EA611270B /* ALL_BUILD */ = {
+                     isa = PBXGroup;
+                     children = (
+                            78AFA8B145D84C61A30250ED /* CMake Rules */,
+                            4B627D8E534843B9A2452E7A /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */,
+                     );
+                     name = ALL_BUILD;
+                     sourceTree = "<group>";
+              };
+              78AFA8B145D84C61A30250ED /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              6091359FA8A84C7BA96BFD9F /* ZERO_CHECK */ = {
+                     isa = PBXGroup;
+                     children = (
+                            652900EB3C8A4E628AB317CC /* CMake Rules */,
+                            C35968A3ABC3402595CD8054 /* /Users/vasya/king_test/kroshking/game/CMakeLists.txt */,
+                     );
+                     name = ZERO_CHECK;
+                     sourceTree = "<group>";
+              };
+              652900EB3C8A4E628AB317CC /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              13E59A19CD5B4161B18FC407 /* Products */ = {
+                     isa = PBXGroup;
+                     children = (
+                            692BC8A608EE4711868CA1B9 /* main */,
+                     );
+                     name = Products;
+                     sourceTree = "<group>";
+              };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+              5FAC1F84CD1547DDA19D8E45 /* main */ = {
+                     isa = PBXNativeTarget;
+                     buildConfigurationList = 5D8A2CAADFE8405EA013562C /* Build configuration list for PBXNativeTarget "main" */;
+                     buildPhases = (
+                            F917DA701F32462D984A5FC3 /* Sources */,
+                     );
+                     buildRules = (
+                     );
+                     dependencies = (
+                            467857997BF048EEA66178C9 /* PBXTargetDependency */,
+                     );
+                     name = main;
+                     productName = main;
+                     productReference = 692BC8A608EE4711868CA1B9 /* main */;
+                     productType = "com.apple.product-type.tool";
+              };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+              4FD08CBD9E734D26A0AC3F60 /* Project object */ = {
+                     isa = PBXProject;
+                     attributes = {
+                            BuildIndependentTargetsInParallel = YES;
+                     };
+                     buildConfigurationList = AA090FF2291B4D899632A196 /* Build configuration list for PBXProject  "OLGA" */;
+                     buildSettings = {
+                     };
+                     buildStyles = (
+                            0224A896EF3B453093D5A15C /* Debug */,
+                            1B8E836FEFE74DB8AEF776EC /* Release */,
+                            4111B69D3DC7415BA5CA9F88 /* MinSizeRel */,
+                            00A9CDF4C9CB4CDBA8E24EF6 /* RelWithDebInfo */,
+                     );
+                     compatibilityVersion = "Xcode 3.2";
+                     hasScannedForEncodings = 0;
+                     mainGroup = 14EB432532B84778B5F07D70;
+                     projectDirPath = "..";
+                     projectRoot = "";
+                     targets = (
+                            5FAC1F84CD1547DDA19D8E45 /* main */,
+                            61078D0D7DBE42439E45D44B /* ALL_BUILD */,
+                            C5BFC7777ABA4C2E83CB1E0B /* ZERO_CHECK */,
+                     );
+              };
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+              B537E132A05D4CA88F94FF9C /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              2A0B30901ED94B4C95B9434C /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/vasya/king_test/kroshking/game/out -f /Users/vasya/king_test/kroshking/game/out/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+              21FF223678C845158E1E4862 /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              665938234F0B4BD1A840E0DA /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/vasya/king_test/kroshking/game/out -f /Users/vasya/king_test/kroshking/game/out/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+              F917DA701F32462D984A5FC3 /* Sources */ = {
+                     isa = PBXSourcesBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                            28A452B0F6F24D6BBAACFF8E /* /Users/vasya/king_test/kroshking/game/gem_grid.cpp */,
+                            0E966B041F95494CA40E4AAA /* /Users/vasya/king_test/kroshking/game/grid.cpp */,
+                            0FD990F523024EA9991F61F8 /* /Users/vasya/king_test/kroshking/game/lodepng.cpp */,
+                            D7146CD7980B470FB526C263 /* /Users/vasya/king_test/kroshking/game/main.cpp */,
+                            A17F3494A94C4C7F8CAA957C /* /Users/vasya/king_test/kroshking/game/texture.cpp */,
+                            3B8E142B84B24E0DB24C8CFB /* /Users/vasya/king_test/kroshking/game/utils.cpp */,
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+              };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+              467857997BF048EEA66178C9 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = C5BFC7777ABA4C2E83CB1E0B /* ZERO_CHECK */;
+                     targetProxy = 6B4B31930F4B4F358011D362 /* PBXContainerItemProxy */;
+              };
+              0B2A8371C9084F8DB0424103 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = C5BFC7777ABA4C2E83CB1E0B /* ZERO_CHECK */;
+                     targetProxy = A791C5CC4D1940248986325A /* PBXContainerItemProxy */;
+              };
+              303A09CA68DC4583A3E97D43 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = 5FAC1F84CD1547DDA19D8E45 /* main */;
+                     targetProxy = F52C186A7CAD4E1AAB7E6655 /* PBXContainerItemProxy */;
+              };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+              6A55D5FD80C2487E8713CB28 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out/build;
+                     };
+                     name = Debug;
+              };
+              CFA1FB91A3824D349608F1BC /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out/build;
+                     };
+                     name = Release;
+              };
+              79771D0684EB435684EB0D05 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out/build;
+                     };
+                     name = MinSizeRel;
+              };
+              B58383ECDBF246BF80ABCEAB /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out/build;
+                     };
+                     name = RelWithDebInfo;
+              };
+              E1025D48FD894CF689D0EC00 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "     -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "     -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              8C6C12709C874CA7808EC63C /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 3;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              D475A2C259F94130B4036180 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = s;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              8A71148BD98B4787A163EF49 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = "";
+                            EXECUTABLE_SUFFIX = "";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 2;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            LIBRARY_SEARCH_PATHS = "";
+                            OTHER_CFLAGS = "       -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework GLUT -framework Cocoa -framework AGL -framework OpenGL -lm";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = main;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              5EA3DC08E7AE481CB5DCAD50 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              63F820C026CD441DB15F9A6C /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              86708A99124B42ECBFC0D513 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              CC79F61E36F64F628F81C3FB /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              40F261AB0B0D48EC89F2982D /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              35CEB710D8AC4D0B89DCB596 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              625DF220BDAF48A0885B771E /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              7EDC74F218F045518BAE7DB6 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = /Users/vasya/king_test/kroshking/game/out;
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+              AA090FF2291B4D899632A196 /* Build configuration list for PBXProject  "OLGA" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            6A55D5FD80C2487E8713CB28 /* Debug */,
+                            CFA1FB91A3824D349608F1BC /* Release */,
+                            79771D0684EB435684EB0D05 /* MinSizeRel */,
+                            B58383ECDBF246BF80ABCEAB /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              5D8A2CAADFE8405EA013562C /* Build configuration list for PBXNativeTarget "main" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            E1025D48FD894CF689D0EC00 /* Debug */,
+                            8C6C12709C874CA7808EC63C /* Release */,
+                            D475A2C259F94130B4036180 /* MinSizeRel */,
+                            8A71148BD98B4787A163EF49 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              CC75773DEF5746F6B249C78F /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            5EA3DC08E7AE481CB5DCAD50 /* Debug */,
+                            63F820C026CD441DB15F9A6C /* Release */,
+                            86708A99124B42ECBFC0D513 /* MinSizeRel */,
+                            CC79F61E36F64F628F81C3FB /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              851A5EDEB54A4CA8A4C26FD3 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            40F261AB0B0D48EC89F2982D /* Debug */,
+                            35CEB710D8AC4D0B89DCB596 /* Release */,
+                            625DF220BDAF48A0885B771E /* MinSizeRel */,
+                            7EDC74F218F045518BAE7DB6 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+/* End XCConfigurationList section */
+       };
+       rootObject = 4FD08CBD9E734D26A0AC3F60;
+}

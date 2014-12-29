@@ -9,7 +9,7 @@
 
 
 //-----------------------------------------------------------------------------
-Texture::Texture(void) : id_(0), width_(0), height_(0), mask_(GM_NONE)
+Texture::Texture(void) : id_(0), width_(0), height_(0), mask_(0)
 {  }
 
 //-----------------------------------------------------------------------------
@@ -21,36 +21,39 @@ Texture::~Texture(void)
 //-----------------------------------------------------------------------------
 int Texture::add ( unsigned mask, const std::string& png_file )
 {
+    int result = -1;
     std::vector<unsigned char> image; //the raw pixels
     GLuint w = 0, h = 0;
 
-    //decode
+    // decode
     unsigned error = lodepng::decode(image, width, height, path);
 
-    //if there's an error, display it
+    // if there's an error, display it
     if(error)
     {
-        std::cerr << "Texture :: decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
-        return -1;
+        std::cerr << "Texture :: decoder error " << error << " : "
+                  << lodepng_error_text(error) << std::endl;
     }
     else
     {
         // get Texture ID from OpenGl
-        bool result = load_texture( (GLuint*)&image[0], w, h);
-        if (result)
+        GLuint tex_id = load_texture( (GLuint*)&image[0], w, h );
+        if (tex_id > 0)
         {
-            this->descr_.push_back(TexDescr(mask, w, h));
+            this->descr_.push_back( TexDescr( mask, w, h ) );
+            this->id_.push_back( tex_id );
+            result = this->id_.size() - 1;
         }
         else
         {
-            return -1; // TODO error could be processed better way :(
+            result = -1;
         }
     }
-    return this->id_.size() - 1;
+    return result;
 }
 
 //-----------------------------------------------------------------------------
-bool Texture::load_texture( GLuint* img, GLuint w, GLuint h )
+GLuint Texture::load_texture( GLuint* img, GLuint w, GLuint h )
 {
     GLuint tex_id = 0;
     
@@ -64,21 +67,20 @@ bool Texture::load_texture( GLuint* img, GLuint w, GLuint h )
     GLenum error = glGetError();
     if( error != GL_NO_ERROR )
     {
-        std::cerr << "Texture :: Error loading texture from array - " << gluErrorString( error ) << std::endl;
-        return false;
+        tex_id = 0;
+        std::cerr << "Texture :: failed to load texture - " << gluErrorString( error ) << std::endl;
     }
 
     //Successeded
-    this->id_.push_back(tex_id);
-    return true;
+    return tex_id;
 }
 
 //-----------------------------------------------------------------------------
 void Texture::clear(void)
 {
-    glDeleteTextures(this->id_.size(), &this->id_);
-    std::for_each(this->id_.begin(), this->id_.end(), [](int &n){ n = 0; });
-    std::for_each(this->id_.begin(), this->id_.end(), [](TexDescr &descr){ descr.clear();});
+    glDeleteTextures( this->id_.size(), &this->id_ );
+    std::for_each( this->id_.begin(), this->id_.end(), [](int &n){ n = 0; } );
+    std::for_each( this->id_.begin(), this->id_.end(), [](TexDescr &descr){ descr.clear();} );
 }
 
 //-----------------------------------------------------------------------------
@@ -87,6 +89,9 @@ unsigned Texture::get_random(void) const
     srand (time(NULL));
     // generate secret number between 0 and size of tex array - 1
     unsigned int random_idx = rand() % (this->id.size() - 1);
+
+    std::cout << "Generated tex index = " << random_index << std::endl;
+
     this->current_tex = random_idx;
     return this->descr_[this->current_tex].mask_;
 }

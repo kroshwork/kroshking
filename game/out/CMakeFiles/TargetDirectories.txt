@@ -1,0 +1,3 @@
+/Users/vasya/king_test/kroshking/game/out/CMakeFiles/main.dir
+/Users/vasya/king_test/kroshking/game/out/CMakeFiles/ALL_BUILD.dir
+/Users/vasya/king_test/kroshking/game/out/CMakeFiles/ZERO_CHECK.dir
