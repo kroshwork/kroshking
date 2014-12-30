@@ -93,21 +93,20 @@ GemGrid(void);
 
     struct Gem
     {
-        int x_;
-        int y_;
-        int x_new_; // Needed for moving gems only
-        int y_new_;
-        int w_;
-        int h_;
-        GLuint tex_id_;
+        GLfloat x_new_ ; // Needed for moving gems only
+        GLfloat y_new_ ;
+        size_t tex_idx_;
 
-        void (Gem::*draw_ptr_)(void);  
+        void (*draw_ptr_)(GLfloat, GLfloat, size_t);  
 
-        void draw_null(void);
-        void draw_static(void);
-        void draw_moving(void);
+        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx_) { return; }
+        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx_) { return; }
+        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx_) { return; }
 
-        Gem(size_t tex_idx);
+        Gem(size_t tex_idx) : x_new_(-1), y_new_(-1), tex_idx_(tex_idx)
+        {
+            draw_ptr_ = &(GemGrid::Gem::draw_static);
+        }
     };
 
 

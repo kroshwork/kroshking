@@ -231,7 +231,7 @@ void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
         {
             delete this->gems_[idx];
         }
-        //this->gems_[idx] = new Gem(tex_loader.get_current());
+        this->gems_[idx] = new Gem(tex_loader.get_current());
         this->gem_masks_[idx] = gem_mask;
     }
     else
