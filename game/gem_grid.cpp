@@ -11,6 +11,13 @@ GemGrid::~GemGrid(void)
 }
 
 //-----------------------------------------------------------------------------
+GemGrid::GemGrid(void) : Grid()
+{
+    this->num_x_ = GRID_X;
+    this->num_y_ = GRID_Y;
+}
+
+//-----------------------------------------------------------------------------
 GemGrid& GemGrid::get_instance( void )
 {
     static GemGrid instance;
@@ -18,10 +25,41 @@ GemGrid& GemGrid::get_instance( void )
 }
 
 //-----------------------------------------------------------------------------
-bool GemGrid::load_bg_tex( const std::string& fname )
+bool GemGrid::load_bg_tex( const std::string& fname, int x, int y, int w, int h )
 {
-    bool result = false;
+    bool result = true;
+    if (x <= 0)
+    {
+        std::cerr << "GemGrid :: wrong grid value 'x'" << std::endl;
+        result = false;
+    }
+    if (y <= 0)
+    {
+        std::cerr << "GemGrid :: wrong grid value 'y'" << std::endl;
+        result = false;
+    }
+    if (w <= 0)
+    {
+        std::cerr << "GemGrid :: wrong grid value 'w'" << std::endl;
+        result = false;
+    }
+    if (h <= 0)
+    {
+        std::cerr << "GemGrid :: wrong grid value 'h'" << std::endl;
+        result = false;
+    }
+    // Init gems grid
+    this->init( x,
+                y,
+                floor((float)w / (float)this->num_x_),
+                floor((float)h / (float)this->num_y_),
+                this->num_x_,
+                this->num_y_ );
+
+
     result = (this->tex_loader_.add(GM_NONE, fname) != -1);
+
+
     return result;
 }
 
@@ -45,33 +83,12 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
 //-----------------------------------------------------------------------------
 void GemGrid::draw( void )
 {
-    if (this->tex_loader_.get_bg_id() != 0)
-    {
-        glLoadIdentity();
- 
-        // Centered offsets
-        const GLuint w = this->tex_loader_.get_bg_width (); 
-        const GLuint h = this->tex_loader_.get_bg_height();
-        GLfloat x = ( SCREEN_WIDTH  - w ) / 2.f;
-        GLfloat y = ( SCREEN_HEIGHT - h ) / 2.f;
- 
-        glTranslatef( x, y, 0.f );
+    const GLuint w = this->tex_loader_.get_bg_width (); 
+    const GLuint h = this->tex_loader_.get_bg_height();
+    GLfloat x = ( SCREEN_WIDTH  - w ) / 2.f;
+    GLfloat y = ( SCREEN_HEIGHT - h ) / 2.f;
+    this->tex_loader_.draw(x, y);
 
-        //Set texture ID
-        glBindTexture( GL_TEXTURE_2D, this->tex_loader_.get_bg_id() );
-
-        //Render textured quad
-        printf("BG Width  = %d\n", w );
-        printf("BG Height = %d\n", h );
-        
-        glBegin( GL_QUADS );
-            glTexCoord2f( 0.f, 0.f ); glVertex2f( 0.f , 0.f);
-            glTexCoord2f( 1.f, 0.f ); glVertex2f( w   , 0.f);
-            glTexCoord2f( 1.f, 1.f ); glVertex2f( w   , h  );
-            glTexCoord2f( 0.f, 1.f ); glVertex2f( 0.f , h  );
-        glEnd();
-        //TODO
-    }
 }
 
 

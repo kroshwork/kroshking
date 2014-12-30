@@ -142,7 +142,8 @@ void Texture::TexDescr::draw( GLfloat x, GLfloat y ) const
     {
         glLoadIdentity();
  
-        glTranslatef( x, y, 0.f );
+        //glTranslatef( x, y, 0.f );
+        glTranslatef( 0, 0, 0.f );
 
         //Set texture ID
         glBindTexture( GL_TEXTURE_2D, this->id_ );

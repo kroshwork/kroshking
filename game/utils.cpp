@@ -41,21 +41,12 @@ bool init( void )
 bool load_assets( void )
 {
 
-    if ( !GEM_GRID.load_bg_tex( IMG_PATH + std::string("BackGround.png") ) )
+    if ( !GEM_GRID.load_bg_tex( IMG_PATH + std::string("BackGround.png"), 1, 1, 1, 1) )
     {
         std::cerr << "load_assets :: Failed to load background texture" << std::endl;
         return false;
     }
 
-//    std::map<unsigned, std::string> tex_map = {  );
-//    sif ( !GEM_GRID.load_gems_tex(
-//                                    {{ GM_BLUE   , { IMG_PATH + std::string( "Blue.png"   ) }},
-//                                    {{ GM_GREEN  , { IMG_PATH + std::string( "Green.png"  ) }},
-//                                    {{ GM_PURPLE , { IMG_PATH + std::string( "Purple.png" ) }},
-//                                    {{ GM_RED    , { IMG_PATH + std::string( "Red.png"    ) }},
-//                                    {{ GM_YELLOW , { IMG_PATH + std::string( "Yellow.png" ) }}  ))
-//    {
- 
     if ( !GEM_GRID.load_gems_tex( {
                                     { GM_BLUE   , IMG_PATH + std::string( "Blue.png"   )},
                                     { GM_GREEN  , IMG_PATH + std::string( "Green.png"  )},

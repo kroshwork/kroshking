@@ -32,7 +32,7 @@ public:
     ///        assign ID, reports about errors
     /// \param fname backgroung file - path+name.png
     /// \return true - on success, false - on failure
-    bool load_bg_tex( const std::string& fname );
+    bool load_bg_tex( const std::string& fname, int x_orig, int y_orig, int w, int h );
     
     /// \brief Load gem textures.
     /// \param tex_map gem textures map, where key is unsigned mask and value is file name
@@ -81,6 +81,8 @@ private:
 
 
 private:
+
+GemGrid(void);
 
     struct Gem;
     std::vector<Gem*>     gems_       ; // Array of all grid gems
