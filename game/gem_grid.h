@@ -42,8 +42,6 @@ public:
     void draw( void ); //TODO const/not const??
     
     
-    bool load_assets()
-    
 /*
     // Parameterized constructor
     GemGrid(int min_x,
@@ -57,9 +55,11 @@ public:
     
     
     
-    
-      void GemGrid::generate_gems(void)
 
+    
+void generate_gems(void);
+
+void new_gem(size_t idx, const Texture& tex_loader);
 
 
 

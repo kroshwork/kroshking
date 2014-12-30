@@ -1,5 +1,5 @@
 #include "gem_grid.h"
-
+#include "global_opengl.h"
 #include <iostream>
 
 //-----------------------------------------------------------------------------
@@ -42,15 +42,52 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
 //-----------------------------------------------------------------------------
 void GemGrid::draw( void )
 {
-    ////Calculate centered offsets
-    //XXX OLGA GLfloat x = ( SCREEN_WIDTH - gLoadedTexture.textureWidth() ) / 2.f;
-    //XXX OLGA GLfloat y = ( SCREEN_HEIGHT - gLoadedTexture.textureHeight() ) / 2.f;
-    
+    if (this->tex_loader_.get_bg_id() != 0)
+    {
+        glLoadIdentity();
  
+        // Centered offsets
+        GLfloat x = ( SCREEN_WIDTH  - this->tex_loader_.get_bg_width ()) / 2.f;
+        GLfloat y = ( SCREEN_HEIGHT - this->tex_loader_.get_bg_height()) / 2.f;
+ 
+        glTranslatef( x, y, 0.f );
+
+        //Set texture ID
+        glBindTexture( GL_TEXTURE_2D, this->tex_loader_.get_bg_id() );
+
+        //Render textured quad
+        printf("BG Width  = %d\n", this->tex_loader_.get_bg_width()  );
+        printf("BG Height = %d\n", this->tex_loader_.get_bg_height() );
+        
+        glBegin( GL_QUADS );
+            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f ,            0.f);
+            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth ,            0.f);
+            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth , mTextureHeight);
+            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f , mTextureHeight);
+        glEnd();
+        /*
+        //Render textured quad
+        glBegin( GL_QUADS );
+            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f + mTextureWidth*1.5,            0.f );
+            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5,            0.f );
+            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5, mTextureHeight );
+            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f + mTextureWidth*1.5, mTextureHeight);
+        glEnd();
+*/
+        //TODO
+    }
+}
+
+
+
+ 
+//-----------------------------------------------------------------------------
+GemGrid::GemGrid( void )
+{
+
 
 }
  
-
 
 //-----------------------------------------------------------------------------
 GemGrid::GemGrid(int min_x,
@@ -148,7 +185,7 @@ bool GemGrid::find_win_lines(int i, int j, unsigned mask, std::set<size_t>* win_
 }
 
 //-----------------------------------------------------------------------------
-void new_gem(size_t idx, const Texture& tex_loader)
+void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
 {
     int i = 0, j = 0;
     this->get_idxs(idx, i, j);

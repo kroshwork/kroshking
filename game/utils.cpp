@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "gem_grid.h"
+#include "global_opengl.h"
 
 //-----------------------------------------------------------------------------
 bool init( void )
@@ -93,9 +94,10 @@ void keyboard(unsigned char key, int, int)
     switch (key)
     {
         case 27:
+        case 'a':
         {
         //TODO - do exit    glutLeaveMainLoop();
-            exit(0);
+            exit(EXIT_SUCCESS);
             return;
         }
     }

@@ -7,6 +7,8 @@
 #include <stdlib.h>    
 #include <time.h>       
 
+#include "global_opengl.h"
+
 
 //-----------------------------------------------------------------------------
 Texture::Texture(void) : 

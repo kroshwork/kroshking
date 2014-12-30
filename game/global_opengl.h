@@ -1,6 +1,7 @@
 
-#ifndef LOPENGL_H
-#define LOPENGL_H
+
+#ifndef GLOBAL_OPENGL_H_
+#define GLOBAL_OPENGL_H_
 
 #include <errno.h>
 #include <math.h>
@@ -8,6 +9,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <iostream>
 #include <stdlib.h>
 
 #ifdef __APPLE__
@@ -22,4 +24,4 @@
 #include <GL/glut.h>
 #endif
 
-#endif
+#endif // GLOBAL_OPENGL_H_

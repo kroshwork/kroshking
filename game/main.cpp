@@ -1,5 +1,6 @@
 #include <iostream>
 #include "global_consts.h"
+#include "global_opengl.h"
 
 
 void main_loop( int v )
