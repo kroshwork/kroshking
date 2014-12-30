@@ -2,8 +2,8 @@
 #define GLOBAL_CONSTANTS_H_
 
 // Screen constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;//640;
+const int SCREEN_HEIGHT = 700;//480;
 const int SCREEN_FPS = 60; 
 
 // Game constants
@@ -23,7 +23,6 @@ enum GemMask
     GM_RED    = 0x00000008, //4
     GM_YELLOW = 0x00000010  //5
 };
-const int NUMBER_OF_GEM_MASKS = 5; //TODO OLGA it's not needed prob
 
 const char IMG_PATH [] = {"./"};
 #endif // GLOBAL_CONSTANTS_H_

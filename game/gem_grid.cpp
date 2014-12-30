@@ -20,7 +20,9 @@ GemGrid& GemGrid::get_instance( void )
 //-----------------------------------------------------------------------------
 bool GemGrid::load_bg_tex( const std::string& fname )
 {
-    return this->tex_loader_.load_bg(fname);
+    bool result = false;
+    result = (this->tex_loader_.add(GM_NONE, fname) != -1);
+    return result;
 }
 
 //-----------------------------------------------------------------------------
@@ -68,15 +70,6 @@ void GemGrid::draw( void )
             glTexCoord2f( 1.f, 1.f ); glVertex2f( w   , h  );
             glTexCoord2f( 0.f, 1.f ); glVertex2f( 0.f , h  );
         glEnd();
-        /*
-        //Render textured quad
-        glBegin( GL_QUADS );
-            glTexCoord2f( 0.f, 0.f ); glVertex2f(           0.f + mTextureWidth*1.5,            0.f );
-            glTexCoord2f( 1.f, 0.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5,            0.f );
-            glTexCoord2f( 1.f, 1.f ); glVertex2f( mTextureWidth + mTextureWidth*1.5, mTextureHeight );
-            glTexCoord2f( 0.f, 1.f ); glVertex2f(           0.f + mTextureWidth*1.5, mTextureHeight);
-        glEnd();
-*/
         //TODO
     }
 }
@@ -221,7 +214,7 @@ void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
         {
             delete this->gems_[idx];
         }
-        //TODO this->gems_[idx] = new Gem(tex_loader.get_current());
+        //this->gems_[idx] = new Gem(tex_loader.get_current());
         this->gem_masks_[idx] = gem_mask;
     }
     else

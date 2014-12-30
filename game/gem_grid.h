@@ -66,6 +66,22 @@ void new_gem(size_t idx, const Texture& tex_loader);
 
 private:
 
+
+    // Check current line for win
+    unsigned check_line(const int i, const int j, const int i_inc, const int j_inc, unsigned mask, std::set<int>* win_idx) const;
+    
+    // Find win lines
+    bool find_win_lines(const int i, const int j, unsigned mask, std::set<int>* win_gems) const;
+
+    // Add new gem to grid on init
+   // void new_gem(size_t id, const Texture& tex_loader);
+
+
+
+
+
+private:
+
     struct Gem;
     std::vector<Gem*>     gems_       ; // Array of all grid gems
     std::vector<unsigned> gem_masks_  ; // Gem mask/type
@@ -92,17 +108,6 @@ private:
         Gem(size_t tex_idx);
     };
 
-
-
-private:
-    // Check current line for win
-    unsigned check_line(const int i, const int j, const int i_inc, const int j_inc, unsigned mask, std::set<int>* win_idx) const;
-    
-    // Find win lines
-    bool find_win_lines(const int i, const int j, unsigned mask, std::set<int>* win_gems) const;
-
-    // Add new gem to grid on init
-   // void new_gem(size_t id, const Texture& tex_loader);
 
 
 
