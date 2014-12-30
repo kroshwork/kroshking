@@ -1,6 +1,7 @@
 #include "utils.h"
 #include "gem_grid.h"
 #include "global_opengl.h"
+#include "global_consts.h"
 
 //-----------------------------------------------------------------------------
 bool init( void )
@@ -46,12 +47,23 @@ bool load_assets( void )
         return false;
     }
 
-    if ( !GEM_GRID.load_gems_tex(
-                                  { { GM_BLUE   }, { IMG_PATH + std::string( "Blue.png"   ) }
-                                    { GM_GREEN  }, { IMG_PATH + std::string( "Green.png"  ) }
-                                    { GM_PURPLE }, { IMG_PATH + std::string( "Purple.png" ) }
-                                    { GM_RED    }, { IMG_PATH + std::string( "Red.png"    ) }
-                                    { GM_YELLOW }, { IMG_PATH + std::string( "Yellow.png" ) } } ))
+//    std::map<unsigned, std::string> tex_map = {  );
+//    sif ( !GEM_GRID.load_gems_tex(
+//                                    {{ GM_BLUE   , { IMG_PATH + std::string( "Blue.png"   ) }},
+//                                    {{ GM_GREEN  , { IMG_PATH + std::string( "Green.png"  ) }},
+//                                    {{ GM_PURPLE , { IMG_PATH + std::string( "Purple.png" ) }},
+//                                    {{ GM_RED    , { IMG_PATH + std::string( "Red.png"    ) }},
+//                                    {{ GM_YELLOW , { IMG_PATH + std::string( "Yellow.png" ) }}  ))
+//    {
+ 
+    if ( !GEM_GRID.load_gems_tex( {
+                                    { GM_BLUE   , IMG_PATH + std::string( "Blue.png"   )},
+                                    { GM_GREEN  , IMG_PATH + std::string( "Green.png"  )},
+                                    { GM_PURPLE , IMG_PATH + std::string( "Purple.png" )},
+                                    { GM_RED    , IMG_PATH + std::string( "Red.png"    )},
+                                    { GM_YELLOW , IMG_PATH + std::string( "Yellow.png" )} 
+                                    }
+                                    ))
     {
         std::cerr << "load_assets :: Failed to load gem textures" << std::endl;
         return false;
@@ -82,7 +94,7 @@ void update( void )
 }
 
 //-----------------------------------------------------------------------------
-void mouse(int btn, int state, int x, int y)
+void mouse(int /*btn*/, int /*state*/, int /*x*/, int /*y*/)
 {
     //TODO WRITE ME
     

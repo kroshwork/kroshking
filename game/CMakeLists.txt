@@ -1,7 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(OLGA)
 
-ADD_DEFINITIONS(-O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes -Wpointer-arith -Winline)
+ADD_DEFINITIONS(-O2 -funsigned-char -Wall -W -Wshadow -Wstrict-prototypes
+-Wpointer-arith -Winline -std=c++0x)
 
 FIND_PACKAGE(GLUT)
 FIND_PACKAGE(OpenGL REQUIRED)

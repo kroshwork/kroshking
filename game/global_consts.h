@@ -25,4 +25,5 @@ enum GemMask
 };
 const int NUMBER_OF_GEM_MASKS = 5; //TODO OLGA it's not needed prob
 
+const char IMG_PATH [] = {"./"};
 #endif // GLOBAL_CONSTANTS_H_

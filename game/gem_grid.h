@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <set>
 
 #include "grid.h"
 #include "texture.h"
@@ -24,7 +25,7 @@ public:
     virtual ~GemGrid(void);
     
     /// \brief Init (if it was not initialized yet) and return instance of the grid
-    static GemGrid& get_instace(void);
+    static GemGrid& get_instance( void );
 
     /// \brief Load background texture.
     ///        Pass filename to the texture loaded, load texture from the file,
@@ -65,8 +66,9 @@ void new_gem(size_t idx, const Texture& tex_loader);
 
 private:
 
+    struct Gem;
     std::vector<Gem*>     gems_       ; // Array of all grid gems
-    std::vector<GemMask>  gem_masks_  ; // Gem mask/type
+    std::vector<unsigned> gem_masks_  ; // Gem mask/type
     std::set<size_t>      moving_gems_; // Indexes of moving gems
    
     Texture tex_loader_;
@@ -94,13 +96,13 @@ private:
 
 private:
     // Check current line for win
-    unsigned check_line(int i, int j, int i_inc, int j_inc, unsigned mask, std::set<int>* win_idx) const;
+    unsigned check_line(const int i, const int j, const int i_inc, const int j_inc, unsigned mask, std::set<int>* win_idx) const;
     
     // Find win lines
-    bool find_win_lines(int i, int j, unsigned mask, std::set<size_t>* win_gems) const;
+    bool find_win_lines(const int i, const int j, unsigned mask, std::set<int>* win_gems) const;
 
     // Add new gem to grid on init
-    void new_gem(size_t id, const Texture& tex_loader);
+   // void new_gem(size_t id, const Texture& tex_loader);
 
 
 

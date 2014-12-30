@@ -15,9 +15,9 @@ public:
 
     // Parameterized constructor
     Grid(int min_x,
-         int min_y;
+         int min_y,
          int len_x,
-         int len_y;
+         int len_y,
          int num_x,
          int num_y);
     
@@ -39,14 +39,14 @@ protected:
     // Initialize grid
     // return -1 on error
     int init( int min_x,
-              int min_y;
+              int min_y,
               int len_x,
-              int len_y;
+              int len_y,
               int num_x,
               int num_y );
 
 
- private:
+protected:
 
     int min_x_; // Origin coordinates
     int min_y_;

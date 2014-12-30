@@ -21,7 +21,7 @@ Grid::Grid(const Grid& obj)
 }
 
 //-----------------------------------------------------------------------------
-Grid& operator=(const Grid& obj)
+Grid& Grid::operator=(const Grid& obj)
 {
     (void)this->init( obj.min_x_, 
                       obj.min_y_,

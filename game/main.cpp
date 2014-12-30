@@ -1,13 +1,14 @@
 #include <iostream>
 #include "global_consts.h"
 #include "global_opengl.h"
+#include "utils.h"
 
 
 void main_loop( int v )
 {
     update();
     display();
-    glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, val );
+    glutTimerFunc( 1000 / SCREEN_FPS, main_loop, v );
 }
 
 
