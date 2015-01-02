@@ -165,13 +165,12 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
         idx_vec.push_back(i + i_inc * n + this->num_x_ * (j + j_inc * n));
     }
     // Get masks
-    for_each (idx_vec.begin(), idx_vec.end(), [&](int n)
-                {
-                    res &= static_cast<unsigned>(this->gem_masks_[n]);
-                    return res;
-                });
+    for (int n = 0; n < idx_vec.size(); ++n)
+    {
+        res &= static_cast<unsigned>(this->gem_masks_[n]);
+    }
 
-        //TODO CHECK IT
+    //TODO CHECK IT
     std::cout << std::endl << ">>> CHECK POINT <<< GemGrid :: check_line result = " << res << std::endl;
 
     if (res > 0 && win_idx != NULL)
@@ -227,19 +226,19 @@ bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std:
 
     return (res_up || res_down || res_left || res_right);
 }
-
+#include <unistd.h>
 //-----------------------------------------------------------------------------
 void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
 {
     int i = 0, j = 0;
     this->get_idxs(idx, i, j);
-
+    //sleep(0.1);
     unsigned gem_mask = tex_loader.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask, NULL);
 
     while (lines_found) // TODO - additional stop criteria might be needed
     {
-        gem_mask = tex_loader.get_next();
+    gem_mask = tex_loader.get_next();
         lines_found = this->find_win_lines(i, j, gem_mask, NULL);
     }
 
@@ -267,7 +266,7 @@ void GemGrid::generate_assets(void)
     // Resize the container so that it contains num_x * num_y 'gems'
     this->gems_.resize(all_gems, NULL);
     // Set all textures to -1 -> means texture is not set
-    this->gem_masks_.resize(all_gems, -1);
+    this->gem_masks_.resize(all_gems, 0);
 
     for (size_t i = 0; i < all_gems; ++i)
     {

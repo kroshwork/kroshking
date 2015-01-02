@@ -99,7 +99,7 @@ unsigned Texture::get_random(void) const
 //-----------------------------------------------------------------------------
 unsigned Texture::get_next(void) const
 {
-    this->current_tex_ = (this->current_tex_ + 1) % (this->descr_.size() - 1);
+    this->current_tex_ = (this->current_tex_ + 1) % (this->descr_.size());
     if (this->current_tex_ == BACKGROUND_IDX)
     {
         this->current_tex_++;
