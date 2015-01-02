@@ -99,9 +99,9 @@ GemGrid(void);
 
         void (*draw_ptr_)(GLfloat, GLfloat, size_t);  
 
-        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx_) { return; }
-        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx_) { return; }
-        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx_) { return; }
+        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx);
+        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx);
+        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx);
 
         Gem(size_t tex_idx) : x_new_(-1), y_new_(-1), tex_idx_(tex_idx)
         {

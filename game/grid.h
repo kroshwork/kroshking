@@ -22,17 +22,21 @@ public:
          int num_y);
     
     
-    // Get face ID by input coordinates (face ID is used as gem ID)
+    // Get face index by input coordinates (face index is used as gem ID)
     // x,y - mouse coordinates
     // return - ID value - on success, -1 - error/did not find ID (i.e. input coords are outside of the grid)
     int get_id(int x, int y) const;
 
-    // Get grid indexes by face ID
+    // Get grid indexes by face index
     // id - face/gem ID
     // i - index of input face (x-direction)
     // j - index of input face (y-direction)
     // return -1 on error
-    int get_idxs(int id, int& i, int& j) const;
+    int get_idxs(int idx, int& i, int& j) const;
+    
+    int get_x(int idx) const;
+    int get_y(int idx) const;
+    
 
 protected:
 

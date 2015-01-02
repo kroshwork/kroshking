@@ -70,18 +70,18 @@ int Grid::get_id(int x, int y) const
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_idxs(int id, int& i, int& j) const
+int Grid::get_idxs(int idx, int& i, int& j) const
 {
     // Check input ID
-    if (id < 0 || id >= this->num_x_ * this->num_y_)
+    if (idx < 0 || idx >= this->num_x_ * this->num_y_)
     {
-        std::cerr << "Grid :: wrong input ID" << std::endl;
+        std::cerr << "Grid :: wrong input index" << std::endl;
         return -1;
     } 
 
     // Calc indexes
-    i = id % this->num_x_;
-    j = id / this->num_x_;
+    i = idx % this->num_x_;
+    j = idx / this->num_x_;
 
     return EXIT_SUCCESS;
 }

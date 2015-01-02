@@ -88,6 +88,12 @@ void GemGrid::draw( void )
     GLfloat x = ( SCREEN_WIDTH  - w ) / 2.f;
     GLfloat y = ( SCREEN_HEIGHT - h ) / 2.f;
     this->tex_loader_.draw(x, y);
+    
+    for (int i = 0; i < ; ++i)
+    {
+        this->gems_[i]->draw_ptr_(this->,i); // Array of all grid gems
+        
+    }
 
 }
 
@@ -249,6 +255,18 @@ void GemGrid::generate_gems(void)
         this->new_gem(i, this->tex_loader_);
     }
 }
+
+//-----------------------------------------------------------------------------
+void GemGrid::Gem::draw_null  (GLfloat x, GLfloat y, size_t tex_idx) { return; }
+
+//-----------------------------------------------------------------------------
+void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx)
+{
+    
+    
+    return;
+}
+void GemGrid::Gem::draw_moving(GLfloat x, GLfloat y, size_t tex_idx) { return; }
 
 
 
