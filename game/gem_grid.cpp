@@ -7,7 +7,7 @@
 GemGrid::~GemGrid(void)
 {
     // TODO
-    
+
 }
 
 //-----------------------------------------------------------------------------
@@ -83,30 +83,43 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
 //-----------------------------------------------------------------------------
 void GemGrid::draw( void )
 {
-    const GLuint w = this->tex_loader_.get_bg_width (); 
+    const GLuint w = this->tex_loader_.get_bg_width ();
     const GLuint h = this->tex_loader_.get_bg_height();
     GLfloat x = ( SCREEN_WIDTH  - w ) / 2.f;
     GLfloat y = ( SCREEN_HEIGHT - h ) / 2.f;
     this->tex_loader_.draw(x, y);
-    
-    for (int i = 0; i < ; ++i)
-    {
-        this->gems_[i]->draw_ptr_(this->,i); // Array of all grid gems
-        
-    }
 
+    for (int i = 0; i < (this->num_x_ * this->num_y_); ++i)
+    {
+        x = (GLfloat)this->get_x(i);
+        y = (GLfloat)this->get_y(i);
+        std::cout << std::endl << "!!! >>> x = " << x << ", y = " << y << std::endl;
+        size_t tex_idx = this->gems_[i]->tex_idx_;
+        this->gems_[i]->draw_ptr_(x, y, tex_idx, this->tex_loader_); // Calls texture draw or nothing
+    }
 }
 
+//-----------------------------------------------------------------------------
+void GemGrid::Gem::draw_null  (GLfloat , GLfloat, size_t, const Texture&) { return; }
+
+//-----------------------------------------------------------------------------
+void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture& tex_loader)
+{
+    tex_loader.draw(x, y, tex_idx);
+    return;
+}
+void GemGrid::Gem::draw_moving(GLfloat , GLfloat, size_t, const Texture&) { return; }
 
 
- 
+
+
 //-----------------------------------------------------------------------------
 //GemGrid::GemGrid( void )
 //{
 //TODO
 
 //}
- 
+
 
 ////-----------------------------------------------------------------------------
 //GemGrid::GemGrid(int min_x,
@@ -137,7 +150,7 @@ void GemGrid::draw( void )
 //}
 //
 //-----------------------------------------------------------------------------
-unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc, 
+unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc,
                             const unsigned mask, std::set<int>* win_idx) const
 {
 // TODO ? change to use recursion
@@ -152,7 +165,7 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
         idx_vec.push_back(i + i_inc * n + this->num_x_ * (j + j_inc * n));
     }
     // Get masks
-    for_each (idx_vec.begin(), idx_vec.end(), [&](int n) 
+    for_each (idx_vec.begin(), idx_vec.end(), [&](int n)
                 {
                     res &= static_cast<unsigned>(this->gem_masks_[n]);
                     return res;
@@ -163,7 +176,7 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
 
     if (res > 0 && win_idx != NULL)
     {
-        for_each (idx_vec.begin(), idx_vec.end(), [&](int n) 
+        for_each (idx_vec.begin(), idx_vec.end(), [&](int n)
                     {
                         win_idx->insert(n);
                         return res;
@@ -247,26 +260,20 @@ void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
 }
 
 //-----------------------------------------------------------------------------
-void GemGrid::generate_gems(void)
+void GemGrid::generate_assets(void)
 {
-    const size_t all_gems = this->gems_.size();
+    const size_t all_gems = static_cast<size_t>(this->num_x_ * this->num_y_);
+
+    // Resize the container so that it contains num_x * num_y 'gems'
+    this->gems_.resize(all_gems, NULL);
+    // Set all textures to -1 -> means texture is not set
+    this->gem_masks_.resize(all_gems, -1);
+
     for (size_t i = 0; i < all_gems; ++i)
     {
         this->new_gem(i, this->tex_loader_);
     }
 }
-
-//-----------------------------------------------------------------------------
-void GemGrid::Gem::draw_null  (GLfloat x, GLfloat y, size_t tex_idx) { return; }
-
-//-----------------------------------------------------------------------------
-void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx)
-{
-    
-    
-    return;
-}
-void GemGrid::Gem::draw_moving(GLfloat x, GLfloat y, size_t tex_idx) { return; }
 
 
 

@@ -87,8 +87,8 @@ void Texture::clear(void)
 unsigned Texture::get_random(void) const
 {
     srand (time(NULL));
-    // generate secret number between 1 and size of tex array - 1
-    unsigned int random_idx = rand() % (this->descr_.size() - 2) + 1;
+    // generate number between 1 and size of tex array - 1
+    unsigned int random_idx = rand() % (this->descr_.size() - 1) + 1;
 
     std::cout << "Generated tex index = " << random_idx << std::endl;
 
@@ -142,8 +142,7 @@ void Texture::TexDescr::draw( GLfloat x, GLfloat y ) const
     {
         glLoadIdentity();
  
-        //glTranslatef( x, y, 0.f );
-        glTranslatef( 0, 0, 0.f );
+        glTranslatef( x, y, 0.f );
 
         //Set texture ID
         glBindTexture( GL_TEXTURE_2D, this->id_ );

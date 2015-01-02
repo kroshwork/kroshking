@@ -41,7 +41,8 @@ bool init( void )
 bool load_assets( void )
 {
 
-    if ( !GEM_GRID.load_bg_tex( IMG_PATH + std::string("BackGround.png"), 1, 1, 1, 1) )
+    if ( !GEM_GRID.load_bg_tex( IMG_PATH + std::string("BackGround.png"), 345, 145, 360, 360) )
+    //TODO set relative values - check bg sizes and initial window size
     {
         std::cerr << "load_assets :: Failed to load background texture" << std::endl;
         return false;
@@ -59,6 +60,8 @@ bool load_assets( void )
         std::cerr << "load_assets :: Failed to load gem textures" << std::endl;
         return false;
     }
+
+    GEM_GRID.generate_assets();
 
     return true;
 }

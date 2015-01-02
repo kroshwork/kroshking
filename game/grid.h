@@ -22,22 +22,28 @@ public:
          int num_y);
     
     
-    // Get face index by input coordinates (face index is used as gem ID)
+    // Get face index by input coordinates (face index is used as gem index)
     // x,y - mouse coordinates
-    // return - ID value - on success, -1 - error/did not find ID (i.e. input coords are outside of the grid)
+    // return - index value - on success, -1 - error/did not find index (i.e. input coords are outside of the grid)
     int get_id(int x, int y) const;
 
     // Get grid indexes by face index
-    // id - face/gem ID
+    // id - face/gem index
     // i - index of input face (x-direction)
     // j - index of input face (y-direction)
     // return -1 on error
     int get_idxs(int idx, int& i, int& j) const;
     
+    /// \brief Get x-coordinate by face/gem index
+    /// \param idx index of face
+    /// \return x-coordinate
     int get_x(int idx) const;
+ 
+    /// \brief Get y-coordinate by face/gem index
+    /// \param idx index of face
+    /// \return y-coordinate
     int get_y(int idx) const;
     
-
 protected:
 
     // Initialize grid

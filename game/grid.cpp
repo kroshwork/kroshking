@@ -12,7 +12,7 @@ Grid::Grid(void)
 //-----------------------------------------------------------------------------
 Grid::Grid(const Grid& obj)
 {
-    (void)this->init( obj.min_x_, 
+    (void)this->init( obj.min_x_,
                       obj.min_y_,
                       obj.len_x_,
                       obj.len_y_,
@@ -23,7 +23,7 @@ Grid::Grid(const Grid& obj)
 //-----------------------------------------------------------------------------
 Grid& Grid::operator=(const Grid& obj)
 {
-    (void)this->init( obj.min_x_, 
+    (void)this->init( obj.min_x_,
                       obj.min_y_,
                       obj.len_x_,
                       obj.len_y_,
@@ -44,7 +44,7 @@ Grid::Grid(int  min_x,
            int  num_x,
            int  num_y)
 {
-    (void)this->init( min_x, 
+    (void)this->init( min_x,
                       min_y,
                       len_x,
                       len_y,
@@ -56,7 +56,7 @@ Grid::Grid(int  min_x,
 int Grid::get_id(int x, int y) const
 {
     int result = -1;
-    
+
     // Check if coords are inside of the grid
     if (x < this-> min_x_ || x > this->max_x_ || y < this-> min_y_ || y > this->max_y_)
     {
@@ -64,7 +64,7 @@ int Grid::get_id(int x, int y) const
         return result;
     }
 
-    // Calc ID
+    // Calc index
     result = (x - this->min_x_) / this->len_x_ + ((y - this->min_y_) / this->len_y_) * this->num_x_;
     return result;
 }
@@ -72,18 +72,48 @@ int Grid::get_id(int x, int y) const
 //-----------------------------------------------------------------------------
 int Grid::get_idxs(int idx, int& i, int& j) const
 {
-    // Check input ID
+    // Check input index
     if (idx < 0 || idx >= this->num_x_ * this->num_y_)
     {
         std::cerr << "Grid :: wrong input index" << std::endl;
         return -1;
-    } 
+    }
 
     // Calc indexes
     i = idx % this->num_x_;
     j = idx / this->num_x_;
 
     return EXIT_SUCCESS;
+}
+
+//-----------------------------------------------------------------------------
+int Grid::get_x(int idx) const
+{
+    // Check input index
+    if (idx < 0 || idx >= this->num_x_ * this->num_y_)
+    {
+        std::cerr << "Grid :: wrong input index (get_x)" << std::endl;
+        return -1;
+    }
+
+    // Calc x coord
+    int x_coord = this->min_x_ + (idx % this->num_x_) * this->len_x_;
+    return x_coord;
+}
+
+//-----------------------------------------------------------------------------
+int Grid::get_y(int idx) const
+{
+    // Check input index
+    if (idx < 0 || idx >= this->num_x_ * this->num_y_)
+    {
+        std::cerr << "Grid :: wrong input index (get_y)" << std::endl;
+        return -1;
+    }
+
+    // Calc y coord
+    int y_coord = this->min_y_ + (idx / this->num_x_) * this->len_y_ ;
+    return y_coord;
 }
 
 
@@ -103,9 +133,9 @@ int Grid::init( int min_x,
     {
         std::cerr << "Grid :: wrong input init parameters" << std::endl;
         return -1;
-    }    
+    }
 
-    this->min_x_ = min_x;    
+    this->min_x_ = min_x;
     this->min_y_ = min_y;
     this->len_x_ = len_x;
     this->len_y_ = len_y;
@@ -113,7 +143,7 @@ int Grid::init( int min_x,
     this->num_y_ = num_y;
 
     // Calc max grid coordinates
-    this->max_x_ = min_x + len_x * num_x; 
+    this->max_x_ = min_x + len_x * num_x;
     this->max_y_ = min_y + len_y * num_y;
 
     return EXIT_SUCCESS;

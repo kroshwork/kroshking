@@ -20,10 +20,10 @@ class GemGrid : public Grid
 //TODO OLGA - write all essentials
 
 public:
-    
+
     /// \brief Clean the data, delete the instance
     virtual ~GemGrid(void);
-    
+
     /// \brief Init (if it was not initialized yet) and return instance of the grid
     static GemGrid& get_instance( void );
 
@@ -33,16 +33,16 @@ public:
     /// \param fname backgroung file - path+name.png
     /// \return true - on success, false - on failure
     bool load_bg_tex( const std::string& fname, int x_orig, int y_orig, int w, int h );
-    
+
     /// \brief Load gem textures.
     /// \param tex_map gem textures map, where key is unsigned mask and value is file name
     /// \return true - on success, false - on failure
     bool load_gems_tex( const std::map<unsigned, std::string>& tex_map );
 
-    /// \brief Draw scene - calculate textures pozition, 
+    /// \brief Draw scene - calculate textures pozition,
     void draw( void ); //TODO const/not const??
-    
-    
+
+
 /*
     // Parameterized constructor
     GemGrid(int min_x,
@@ -53,12 +53,12 @@ public:
             int num_y);
 
 */
-    
-    
-    
 
-    
-void generate_gems(void);
+
+
+
+
+void generate_assets(void);
 
 void new_gem(size_t idx, const Texture& tex_loader);
 
@@ -69,7 +69,7 @@ private:
 
     // Check current line for win
     unsigned check_line(const int i, const int j, const int i_inc, const int j_inc, unsigned mask, std::set<int>* win_idx) const;
-    
+
     // Find win lines
     bool find_win_lines(const int i, const int j, unsigned mask, std::set<int>* win_gems) const;
 
@@ -88,7 +88,7 @@ GemGrid(void);
     std::vector<Gem*>     gems_       ; // Array of all grid gems
     std::vector<unsigned> gem_masks_  ; // Gem mask/type
     std::set<size_t>      moving_gems_; // Indexes of moving gems
-   
+
     Texture tex_loader_;
 
     struct Gem
@@ -97,11 +97,11 @@ GemGrid(void);
         GLfloat y_new_ ;
         size_t tex_idx_;
 
-        void (*draw_ptr_)(GLfloat, GLfloat, size_t);  
+        void (*draw_ptr_)(GLfloat, GLfloat, size_t, const Texture&);
 
-        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx);
-        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx);
-        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx);
+        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
+        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
+        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
 
         Gem(size_t tex_idx) : x_new_(-1), y_new_(-1), tex_idx_(tex_idx)
         {
@@ -114,6 +114,6 @@ GemGrid(void);
 
 };
 
-#define GEM_GRID GemGrid::get_instance() 
+#define GEM_GRID GemGrid::get_instance()
 
 #endif // GEM_GRID_H_
