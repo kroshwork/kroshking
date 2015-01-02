@@ -6,11 +6,12 @@
 #include <cstdio>
 #include <stdlib.h>    
 #include <time.h>       
-
+//urnadom
+#include <fcntl.h>
+#include <cassert>
 
 //-----------------------------------------------------------------------------
-Texture::Texture(void) : 
-    current_tex_(0), descr_(std::vector<TexDescr>())
+Texture::Texture(void) : current_tex_ (0), descr_(std::vector<TexDescr>())
 {
 
 }
@@ -86,14 +87,40 @@ void Texture::clear(void)
 //-----------------------------------------------------------------------------
 unsigned Texture::get_random(void) const
 {
-    srand (time(NULL));
-    // generate number between 1 and size of tex array - 1
-    unsigned int random_idx = rand() % (this->descr_.size() - 1) + 1;
 
-    std::cout << "Generated tex index = " << random_idx << std::endl;
+    unsigned number = 0;
 
-    this->current_tex_ = random_idx;
-    return this->descr_[this->current_tex_].mask_;
+    int fd = ::open("/dev/urandom", O_RDONLY);
+    if (fd != -1)
+    {
+        if (::read(fd, &number, sizeof(number)) == -1) 
+        { 
+            std::cerr << "Texture :: failed to get random number from /dev/urandom";
+            std::cerr << std::endl; 
+            number = rand() % (this->descr_.size() - 1) + 1;
+        }
+        else
+        {
+            // Successfully received random number - range by [1;size - 1]
+            number = number % (this->descr_.size() - 1) + 1;
+        }
+
+        if (::close(fd) == -1) 
+        { 
+            std::cerr << "Texture :: failed to close /dev/urandom" << std::endl; 
+        }
+    }
+    else
+    {
+        std::cerr << "Texture :: failed to open /dev/urandom";
+        number = rand() % (this->descr_.size() - 1) + 1;
+    }
+
+    std::cout << "Generated tex index = " << number << std::endl;
+    assert(number > 0 && number < 6);
+
+    this->current_tex_ = number;
+    return this->descr_[number].mask_;
 }
 
 //-----------------------------------------------------------------------------
@@ -104,6 +131,9 @@ unsigned Texture::get_next(void) const
     {
         this->current_tex_++;
     }
+
+    assert(this->current_tex_ > BACKGROUND_IDX && this->current_tex_ < this->descr_.size());
+
     return this->descr_[this->current_tex_].mask_;
 }
 

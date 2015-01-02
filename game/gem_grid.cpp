@@ -2,6 +2,7 @@
 #include "global_opengl.h"
 #include "global_consts.h"
 #include <iostream>
+#include <unistd.h>
 
 //-----------------------------------------------------------------------------
 GemGrid::~GemGrid(void)
@@ -110,45 +111,6 @@ void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Textu
 }
 void GemGrid::Gem::draw_moving(GLfloat , GLfloat, size_t, const Texture&) { return; }
 
-
-
-
-//-----------------------------------------------------------------------------
-//GemGrid::GemGrid( void )
-//{
-//TODO
-
-//}
-
-
-////-----------------------------------------------------------------------------
-//GemGrid::GemGrid(int min_x,
-//                 int min_y;
-//                 int len_x,
-//                 int len_y;
-//                 int num_x,
-//                 int num_y)
-//{
-//    // Explicitly call parent constructor
-//    Grid::Grid ( min_x,
-//                 min_y,
-//                 len_x,
-//                 len_y,
-//                 num_x,
-//                 num_y );
-//
-//    const size_t all_gems = static_cast<size_t>(num_x * num_y);
-//
-//    // Resize the container so that it contains num_x * num_y 'gems'
-//    this->gems_.resize(all_gems, NULL);
-//    // Set all textures to -1 -> means texture is not set
-//    this->gem_masks_.resize(all_gems, -1);
-//
-//    // Request that the vector capacity be at least enough to contain num_x * num_y elements
-//    // We do not know yet what how many gems will be displayed - so just reserve
-//    this->moving_gems_.reserve(all_gems);
-//}
-//
 //-----------------------------------------------------------------------------
 unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc,
                             const unsigned mask, std::set<int>* win_idx) const
@@ -165,13 +127,13 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
         idx_vec.push_back(i + i_inc * n + this->num_x_ * (j + j_inc * n));
     }
     // Get masks
-    for (int n = 0; n < idx_vec.size(); ++n)
+    for (size_t n = 0; n < idx_vec.size(); ++n)
     {
-        res &= static_cast<unsigned>(this->gem_masks_[n]);
+        res &= static_cast<unsigned>(this->gem_masks_[idx_vec[n]]);
     }
 
     //TODO CHECK IT
-    std::cout << std::endl << ">>> CHECK POINT <<< GemGrid :: check_line result = " << res << std::endl;
+//    std::cout << std::endl << ">>> CHECK POINT <<< GemGrid :: check_line result = " << res << std::endl;
 
     if (res > 0 && win_idx != NULL)
     {
@@ -207,7 +169,7 @@ bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std:
     unsigned res_right = 0;
     if (i <=  (this->num_x_ - WIN_LINE_SIZE))
     {
-        res_left = this->check_line(i, j, 1, 0, mask, win_gems);
+        res_right = this->check_line(i, j, 1, 0, mask, win_gems);
     }
 
     // Check top vertical
@@ -221,24 +183,24 @@ bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std:
     unsigned res_down = 0;
     if (i <=  (this->num_x_ - WIN_LINE_SIZE))
     {
-        res_up = this->check_line(i, j, 0, 1, mask, win_gems);
+        res_down = this->check_line(i, j, 0, 1, mask, win_gems);
     }
 
-    return (res_up || res_down || res_left || res_right);
+    return res_up | res_down | res_left | res_right;
 }
-#include <unistd.h>
+
 //-----------------------------------------------------------------------------
-void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
+void GemGrid::new_gem(size_t idx)
 {
     int i = 0, j = 0;
     this->get_idxs(idx, i, j);
-    //sleep(0.1);
-    unsigned gem_mask = tex_loader.get_random();
+   
+    unsigned gem_mask = this->tex_loader_.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask, NULL);
 
     while (lines_found) // TODO - additional stop criteria might be needed
     {
-    gem_mask = tex_loader.get_next();
+        gem_mask = this->tex_loader_.get_next();
         lines_found = this->find_win_lines(i, j, gem_mask, NULL);
     }
 
@@ -249,7 +211,7 @@ void GemGrid::new_gem(size_t idx, const Texture& tex_loader)
         {
             delete this->gems_[idx];
         }
-        this->gems_[idx] = new Gem(tex_loader.get_current());
+        this->gems_[idx] = new Gem(this->tex_loader_.get_current());
         this->gem_masks_[idx] = gem_mask;
     }
     else
@@ -270,7 +232,7 @@ void GemGrid::generate_assets(void)
 
     for (size_t i = 0; i < all_gems; ++i)
     {
-        this->new_gem(i, this->tex_loader_);
+        this->new_gem(i);
     }
 }
 

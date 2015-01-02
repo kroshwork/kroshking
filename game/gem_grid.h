@@ -60,7 +60,7 @@ public:
 
 void generate_assets(void);
 
-void new_gem(size_t idx, const Texture& tex_loader);
+void new_gem(size_t idx);
 
 
 
@@ -103,8 +103,9 @@ GemGrid(void);
         static void draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
         static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
 
-        Gem(size_t tex_idx) : x_new_(-1), y_new_(-1), tex_idx_(tex_idx)
+        Gem(size_t tex_idx) : x_new_(-1), y_new_(-1)
         {
+            this->tex_idx_ = tex_idx;
             draw_ptr_ = &(GemGrid::Gem::draw_static);
         }
     };
