@@ -82,7 +82,7 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
 }
 
 //-----------------------------------------------------------------------------
-void GemGrid::draw( void )
+void GemGrid::draw( void ) const
 {
     const GLuint w = this->tex_loader_.get_bg_width ();
     const GLuint h = this->tex_loader_.get_bg_height();
@@ -110,6 +110,48 @@ void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Textu
     return;
 }
 void GemGrid::Gem::draw_moving(GLfloat , GLfloat, size_t, const Texture&) { return; }
+
+//-----------------------------------------------------------------------------
+void  GemGrid::mouse(int mouse_x, int mouse_y )
+{
+    int gem_idx = this->get_id(mouse_x, mouse_y); 
+    if (face_idx == -1)
+    {
+        std::cerr << "Mouse did not touch gems" << std::endl;
+        return;
+    }
+
+    // Initial mouse touch
+    if (this->moving_gems_.size() == 0)
+    {
+        this->last_touch_.first  = mouse_x;
+        this->last_touch_.second = mouse_y;
+        this->moving_gems_.push(static_cast<size_t>(gem_idx));
+    }
+    // Mouse was already pressed at least once before
+    else
+    {
+        //1. Check whi derection they tried to move item
+        //Normalized move x and y
+        float move_x = (float)(this->last_touch_.first  - mouse_x) / (float)this->len_x_;
+        float move_y = (float)(this->last_touch_.second - mouse_y) / (float)this->len_y_;
+        if (move_x > move_y) {
+            if ()
+
+
+        } 
+        else
+        {
+ 
+        }
+
+
+    }
+
+    //TODO
+
+
+}
 
 //-----------------------------------------------------------------------------
 unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc,

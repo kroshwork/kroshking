@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <set>
+#include <queue>
 
 #include "grid.h"
 #include "texture.h"
@@ -39,61 +40,51 @@ public:
     /// \return true - on success, false - on failure
     bool load_gems_tex( const std::map<unsigned, std::string>& tex_map );
 
+    /// \brief Generate initial gem grid
+    void generate_assets(void);
+
     /// \brief Draw scene - calculate textures pozition,
-    void draw( void ); //TODO const/not const??
+    void draw( void ) const; //TODO const/not const??
 
 
-/*
-    // Parameterized constructor
-    GemGrid(int min_x,
-            int min_y;
-            int len_x,
-            int len_y;
-            int num_x,
-            int num_y);
-
-*/
-
-
-
-
-
-void generate_assets(void);
-
-void new_gem(size_t idx);
-
-
+    void mouse(int mouse_x, int mouse_y );
 
 private:
+    /// \brief Create new gem - on grid init.
+    void new_gem(size_t idx);
 
+    /// \brief Check current line for win
+    unsigned check_line(int i, int j, int i_inc, int j_inc, 
+        unsigned mask, std::set<int>* win_idx) const;
 
-    // Check current line for win
-    unsigned check_line(const int i, const int j, const int i_inc, const int j_inc, unsigned mask, std::set<int>* win_idx) const;
+    /// \brief Find win lines
+    bool find_win_lines(int i, int j, unsigned mask, 
+        std::set<int>* win_gems) const;
 
-    // Find win lines
-    bool find_win_lines(const int i, const int j, unsigned mask, std::set<int>* win_gems) const;
+    /// \brief Private default consturctor
+    /// \warning Is triggered by get_instance() 
+    GemGrid(void);
 
-    // Add new gem to grid on init
-   // void new_gem(size_t id, const Texture& tex_loader);
-
-
-
-
+    /// \brief Disabled Cope constructor and operator =
+    GemGrid(const GemGrid&) {}
+    GemGrid& operator =(const GemGrid&) {return *this;}
 
 private:
-
-GemGrid(void);
+// Private members
 
     struct Gem;
     std::vector<Gem*>     gems_       ; // Array of all grid gems
     std::vector<unsigned> gem_masks_  ; // Gem mask/type
-    std::set<size_t>      moving_gems_; // Indexes of moving gems
 
-    Texture tex_loader_;
+    std::queue<size_t>      moving_gems_; // Indexes of moving gems
+    std::pair<int, int>     last_touch_;
 
+    Texture               tex_loader_;
+
+// Internal Structures
     struct Gem
     {
-        GLfloat x_new_ ; // Needed for moving gems only
+        GLfloat x_new_ ;
         GLfloat y_new_ ;
         size_t tex_idx_;
 

@@ -88,8 +88,14 @@ void update( void )
 }
 
 //-----------------------------------------------------------------------------
-void mouse(int /*btn*/, int /*state*/, int /*x*/, int /*y*/)
+void mouse(int btn, int state, int mouse_x, int mouse_y )
 {
+    //btn in [GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, GLUT_RIGHT_BUTTON]
+    //state in [GLUT_UP, GLUT_DOWN]
+    if (state == GLUT_DOWN && (btn == GLUT_LEFT_BUTTON || btn == GLUT_RIGHT_BUTTON))
+    {
+        GEM_GRID.mouse(mouse_x, mouse_y);
+    }
     //TODO WRITE ME
     
 }
