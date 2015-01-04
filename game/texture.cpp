@@ -89,11 +89,11 @@ unsigned Texture::get_random(void) const
 {
 
     unsigned number = 0;
-
+/*
     int fd = ::open("/dev/urandom", O_RDONLY);
     if (fd != -1)
     {
-        if (::read(fd, &number, sizeof(number)) == -1) 
+        if (::fread(fd, &number, sizeof(number)) == -1)
         { 
             std::cerr << "Texture :: failed to get random number from /dev/urandom";
             std::cerr << std::endl; 
@@ -110,7 +110,7 @@ unsigned Texture::get_random(void) const
             std::cerr << "Texture :: failed to close /dev/urandom" << std::endl; 
         }
     }
-    else
+    else*///TODO FIXME
     {
         std::cerr << "Texture :: failed to open /dev/urandom";
         number = rand() % (this->descr_.size() - 1) + 1;

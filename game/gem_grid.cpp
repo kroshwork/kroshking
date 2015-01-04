@@ -114,10 +114,10 @@ void GemGrid::Gem::draw_moving(GLfloat , GLfloat, size_t, const Texture&) { retu
 //-----------------------------------------------------------------------------
 void  GemGrid::mouse(int mouse_x, int mouse_y )
 {
-    int gem_idx = this->get_id(mouse_x, mouse_y); 
-    if (face_idx == -1)
+    int gem_idx = this->get_idx(mouse_x, mouse_y);
+    if (gem_idx == -1)
     {
-        std::cerr << "Mouse did not touch gems" << std::endl;
+        std::cout << "Mouse did not touch gems" << std::endl;
         return;
     }
 
@@ -131,20 +131,18 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
     // Mouse was already pressed at least once before
     else
     {
-        //1. Check whi derection they tried to move item
-        //Normalized move x and y
-        float move_x = (float)(this->last_touch_.first  - mouse_x) / (float)this->len_x_;
-        float move_y = (float)(this->last_touch_.second - mouse_y) / (float)this->len_y_;
-        if (move_x > move_y) {
-            if ()
-
-
-        } 
-        else
+        int prev_gem_idx = this->moving_gems_.front();
+        std::set<int> ad_gems;
+        this->get_ad(prev_gem_idx, ad_gems);
+        std::set<int>::iterator it = ad_gems.find(gem_idx);
+        if (it != ad_gems.end())
         {
- 
+            //neighbour was found!!
+            // calculate if there is any win
+            // and if there IS -  swap items and process win
+            // swap shoudl be done in update function
+            
         }
-
 
     }
 
@@ -235,7 +233,7 @@ bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std:
 void GemGrid::new_gem(size_t idx)
 {
     int i = 0, j = 0;
-    this->get_idxs(idx, i, j);
+    this->get_ij(idx, i, j);
    
     unsigned gem_mask = this->tex_loader_.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask, NULL);

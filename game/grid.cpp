@@ -37,10 +37,10 @@ Grid::~Grid(void)
 { }
 
 //-----------------------------------------------------------------------------
-Grid::Grid(int  min_x,
-           int  min_y,
-           int  len_x,
-           int  len_y,
+Grid::Grid(float  min_x,
+           float  min_y,
+           float  len_x,
+           float  len_y,
            int  num_x,
            int  num_y)
 {
@@ -53,7 +53,7 @@ Grid::Grid(int  min_x,
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_id(int x, int y) const
+int Grid::get_idx(int x, int y) const
 {
     int result = -1;
 
@@ -70,7 +70,7 @@ int Grid::get_id(int x, int y) const
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_idxs(int idx, int& i, int& j) const
+int Grid::get_ij(int idx, int& i, int& j) const
 {
     // Check input index
     if (idx < 0 || idx >= this->num_x_ * this->num_y_)
@@ -116,16 +116,48 @@ int Grid::get_y(int idx) const
     return y_coord;
 }
 
+//-----------------------------------------------------------------------------
+int Grid::get_ad(int idx, std::set<int>& ad) const
+{
+    int result = -1;
+    int i = -1, j = -1;
+    ad.clear();
+    if (this->get_ij(idx, i, j) != -1)
+    {
+	if (i > 0)
+	{
+	    ad.insert((i - 1) + j * this->num_x_);
+	}
+	if (i < (this->num_x_ - 1))
+	{
+	    ad.insert((i + 1) + j * this->num_x_);
+	}
+	if (j > 0)
+	{
+	    ad.insert(i + (j - 1) * this->num_x_);
+	}
+	if (j < (this->num_y_ - 1))
+	{
+	    ad.insert(i + (j + 1) * this->num_x_);
+	}
+    }
+
+    if (ad.size() > 0)
+    {
+        result = static_cast<int>(ad.size());
+    }
+    return result;
+}
 
 // Private methods
 
 //-----------------------------------------------------------------------------
-int Grid::init( int min_x,
-                int min_y,
-                int len_x,
-                int len_y,
-                int num_x,
-                int num_y )
+int Grid::init( float min_x,
+                float min_y,
+                float len_x,
+                float len_y,
+                int   num_x,
+                int   num_y )
 {
 
     // Check input parameters
