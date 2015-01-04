@@ -1,5 +1,6 @@
 #include "grid.h"
 #include <iostream>
+#include <cmath>
 
 // Public methods
 
@@ -53,7 +54,7 @@ Grid::Grid(float  min_x,
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_idx(int x, int y) const
+int Grid::get_idx(float x, float y) const
 {
     int result = -1;
 
@@ -65,7 +66,12 @@ int Grid::get_idx(int x, int y) const
     }
 
     // Calc index
-    result = (x - this->min_x_) / this->len_x_ + ((y - this->min_y_) / this->len_y_) * this->num_x_;
+    std::cout << "min x = " << this->min_x_ << " ; min y = " << this->min_y_;
+    std::cout << " ; len x = " << this->len_x_ << " ; len y = " << this->len_y_;
+    std::cout << " ; num x = " << num_x_;
+    std::cout << " ; x = " << x << " ; y = " << y << std::endl;
+    result = std::floor( (x - this->min_x_) / this->len_x_ )
+    +  std::floor((y - this->min_y_) / this->len_y_) * this->num_x_ ;
     return result;
 }
 
@@ -87,7 +93,7 @@ int Grid::get_ij(int idx, int& i, int& j) const
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_x(int idx) const
+float Grid::get_x(int idx) const
 {
     // Check input index
     if (idx < 0 || idx >= this->num_x_ * this->num_y_)
@@ -97,12 +103,12 @@ int Grid::get_x(int idx) const
     }
 
     // Calc x coord
-    int x_coord = this->min_x_ + (idx % this->num_x_) * this->len_x_;
+    float x_coord = this->min_x_ + (idx % this->num_x_) * this->len_x_;
     return x_coord;
 }
 
 //-----------------------------------------------------------------------------
-int Grid::get_y(int idx) const
+float Grid::get_y(int idx) const
 {
     // Check input index
     if (idx < 0 || idx >= this->num_x_ * this->num_y_)
@@ -112,7 +118,7 @@ int Grid::get_y(int idx) const
     }
 
     // Calc y coord
-    int y_coord = this->min_y_ + (idx / this->num_x_) * this->len_y_ ;
+    float y_coord = this->min_y_ + (idx / this->num_x_) * this->len_y_ ;
     return y_coord;
 }
 

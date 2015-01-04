@@ -3,6 +3,7 @@
 #include "global_consts.h"
 #include <iostream>
 #include <unistd.h>
+#include <cassert>
 
 //-----------------------------------------------------------------------------
 GemGrid::~GemGrid(void)
@@ -94,7 +95,7 @@ void GemGrid::draw( void ) const
     {
         x = (GLfloat)this->get_x(i);
         y = (GLfloat)this->get_y(i);
-        std::cout << std::endl << "!!! >>> x = " << x << ", y = " << y << std::endl;
+        ///std::cout << std::endl << "!!! >>> x = " << x << ", y = " << y << std::endl;
         size_t tex_idx = this->gems_[i]->tex_idx_;
         this->gems_[i]->draw_ptr_(x, y, tex_idx, this->tex_loader_); // Calls texture draw or nothing
     }
@@ -109,51 +110,99 @@ void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Textu
     tex_loader.draw(x, y, tex_idx);
     return;
 }
-void GemGrid::Gem::draw_moving(GLfloat , GLfloat, size_t, const Texture&) { return; }
+
+//-----------------------------------------------------------------------------
+void GemGrid::Gem::draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture& tex_loader)
+{
+    
+    return;
+}
 
 //-----------------------------------------------------------------------------
 void  GemGrid::mouse(int mouse_x, int mouse_y )
 {
-    int gem_idx = this->get_idx(mouse_x, mouse_y);
+    int gem_idx = this->get_idx(static_cast<float>(mouse_x), static_cast<float>(mouse_y));
     if (gem_idx == -1)
     {
         std::cout << "Mouse did not touch gems" << std::endl;
         return;
     }
+    
+    std::cout << "TOUCHED GEM # " << gem_idx << std::endl;
 
     // Initial mouse touch
     if (this->moving_gems_.size() == 0)
     {
-        this->last_touch_.first  = mouse_x;
-        this->last_touch_.second = mouse_y;
-        this->moving_gems_.push(static_cast<size_t>(gem_idx));
+        this->moving_gems_.push_back(static_cast<size_t>(gem_idx));
     }
     // Mouse was already pressed at least once before
     else
     {
         int prev_gem_idx = this->moving_gems_.front();
+        if (gem_idx == prev_gem_idx)
+        {
+            this->moving_gems_.clear();
+            std::cout << "Two touches into the same gem (moving_gems_ vector cleared)" <<std::endl;
+            return;
+            
+        }
         std::set<int> ad_gems;
         this->get_ad(prev_gem_idx, ad_gems);
-        std::set<int>::iterator it = ad_gems.find(gem_idx);
-        if (it != ad_gems.end())
+        if (ad_gems.find(gem_idx) != ad_gems.end())
         {
-            //neighbour was found!!
-            // calculate if there is any win
-            // and if there IS -  swap items and process win
-            // swap shoudl be done in update function
             
+            // grid indexes of the current touched gem
+            int cur_i = -1, cur_j = -1;
+            this->get_ij(gem_idx, cur_i, cur_j);
+            unsigned cur_mask = this->gem_masks_[gem_idx];
+            
+            // grid indexes of the previous touched gem
+            int prev_i = -1, prev_j = -1;
+            this->get_ij(prev_gem_idx, prev_i, prev_j);
+            unsigned prev_mask = this->gem_masks_[prev_gem_idx];
+            
+            
+            bool win_found = false;
+            this->win_gems_.clear();
+            // will we win if current gem will be moved to the previous position?
+            if ( this->find_win_lines( prev_i, prev_j, cur_mask, &this->win_gems_) )
+            {
+                win_found = true;
+                std::cout << "Yeii we won some lines (CHECK 1)" << std::endl;
+            }
+            
+            if ( this->find_win_lines( cur_i, cur_j, prev_mask, &this->win_gems_) )
+            {
+                win_found = true;
+                std::cout << "Yeii we won some lines (CHECK 2)" << std::endl;
+            }
+            
+            if (win_found)
+            {
+                // add the second gem to the moving queue, set them new coordinates
+                this->moving_gems_.push_back(static_cast<size_t>(gem_idx));
+                
+                // set gems as moving
+                this->gems_[gem_idx]->set_moving( this->get_x(prev_gem_idx) - this->get_x(gem_idx),
+                                                  this->get_y(prev_gem_idx) - this->get_y(gem_idx));
+                
+                this->gems_[prev_gem_idx]->set_moving( this->get_x(gem_idx) - this->get_x(prev_gem_idx),
+                                                       this->get_y(gem_idx) - this->get_y(prev_gem_idx));
+            }
+            else
+            {
+                this->moving_gems_.clear();
+            }
+        
         }
 
     }
-
-    //TODO
-
-
+    
 }
 
 //-----------------------------------------------------------------------------
 unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc,
-                            const unsigned mask, std::set<int>* win_idx) const
+                            const unsigned mask, std::set<size_t>* win_idx) const
 {
 // TODO ? change to use recursion
     unsigned res = mask;
@@ -182,6 +231,7 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
                         win_idx->insert(n);
                         return res;
                     });
+        std::cout << "WON idxs:";
         std::cout << std::endl;
         for_each (win_idx->begin(), win_idx->end(), [](int n) {std::cout << n << '\t';});
         std::cout << std::endl;
@@ -191,7 +241,7 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
 }
 
 //-----------------------------------------------------------------------------
-bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std::set<int>* win_gems) const
+bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std::set<size_t>* win_gems) const
 {
     if (win_gems != NULL)
     {

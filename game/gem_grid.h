@@ -55,11 +55,11 @@ private:
 
     /// \brief Check current line for win
     unsigned check_line(int i, int j, int i_inc, int j_inc, 
-        unsigned mask, std::set<int>* win_idx) const;
+        unsigned mask, std::set<size_t>* win_idx) const;
 
     /// \brief Find win lines
     bool find_win_lines(int i, int j, unsigned mask, 
-        std::set<int>* win_gems) const;
+        std::set<size_t>* win_gems) const;
 
     /// \brief Private default consturctor
     /// \warning Is triggered by get_instance() 
@@ -72,32 +72,66 @@ private:
 private:
 // Private members
 
+    Texture               tex_loader_ ;
+
     struct Gem;
     std::vector<Gem*>     gems_       ; // Array of all grid gems
     std::vector<unsigned> gem_masks_  ; // Gem mask/type
 
-    std::queue<size_t>      moving_gems_; // Indexes of moving gems
-    std::pair<int, int>     last_touch_;
-
-    Texture               tex_loader_;
+    std::vector<size_t>   moving_gems_; // Indexes of moving gems
+    std::set<size_t>      win_gems_   ;
+    
 
 // Internal Structures
     struct Gem
     {
-        GLfloat x_new_ ;
-        GLfloat y_new_ ;
-        size_t tex_idx_;
+        GLfloat x_progress_ ;
+        GLfloat y_progress_ ;
+        GLfloat x_move_ ;
+        GLfloat y_move_ ;
+        size_t tex_idx_ ;
 
         void (*draw_ptr_)(GLfloat, GLfloat, size_t, const Texture&);
 
-        static void draw_null  (GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
+        static void draw_null  (GLfloat x, GLfloat y, Gem& /*TODO*/, const Texture&);
         static void draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
         static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
 
-        Gem(size_t tex_idx) : x_new_(-1), y_new_(-1)
+        void set_moving(GLfloat x_move, GLfloat y_move)
         {
-            this->tex_idx_ = tex_idx;
+            x_progress_ = 0;
+            y_progress_ = 0;
+            x_move_ = x_move;
+            y_move_ = y_move;
+            draw_ptr_ = &(GemGrid::Gem::draw_moving);
+        }
+
+        void set_static(int tex_idx = -1)
+        {
+            x_progress_ = -1;
+            y_progress_ = -1;
+            x_move_ = -1;
+            y_move_ = -1;
             draw_ptr_ = &(GemGrid::Gem::draw_static);
+            if (tex_idx > -1)
+            {
+                tex_idx_ = tex_idx;
+            }
+            
+        }
+
+        void set_null(void)
+        {
+            x_progress_ = -1;
+            y_progress_ = -1;
+            x_move_ = -1;
+            y_move_ = -1;
+            draw_ptr_ = &(GemGrid::Gem::draw_null);
+        }
+        
+        Gem(size_t tex_idx)
+        {
+            this->set_static(tex_idx);
         }
     };
 

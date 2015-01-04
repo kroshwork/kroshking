@@ -27,7 +27,7 @@ public:
     // Get face index by input coordinates (face index is used as gem index)
     // x,y - mouse coordinates
     // return - index value - on success, -1 - error/did not find index (i.e. input coords are outside of the grid)
-    int get_idx(int x, int y) const;
+    int get_idx(float x, float y) const;
 
     // Get grid indexes by face index
     // id - face/gem index
@@ -39,12 +39,12 @@ public:
     /// \brief Get x-coordinate by face/gem index
     /// \param idx index of face
     /// \return x-coordinate
-    int get_x(int idx) const;
+    float get_x(int idx) const;
  
     /// \brief Get y-coordinate by face/gem index
     /// \param idx index of face
     /// \return y-coordinate
-    int get_y(int idx) const;
+    float get_y(int idx) const;
 
     /// \brief Get adjacent faces
     /// \param idx index of face

@@ -155,7 +155,7 @@ void Texture::TexDescr::clear( void )
 //-----------------------------------------------------------------------------
 void Texture::draw( GLfloat x, GLfloat y, size_t tex_idx) const
 {
-    std::cout << "Drawing index = " << tex_idx << std::endl;
+    ////std::cout << "Drawing index = " << tex_idx << std::endl;
     this->descr_[tex_idx].draw(x, y);
 }
 
@@ -172,8 +172,8 @@ void Texture::TexDescr::draw( GLfloat x, GLfloat y ) const
         glBindTexture( GL_TEXTURE_2D, this->id_ );
 
         //Render textured quad
-        std::cout << "Width  = " << this->width_  << std::endl;
-        std::cout << "Height = " << this->height_ << std::endl;
+        ////std::cout << "Width  = " << this->width_  << std::endl;
+        ////std::cout << "Height = " << this->height_ << std::endl;
         
         glBegin( GL_QUADS );
             glTexCoord2f( 0.f, 0.f ); glVertex2f(         0.f ,           0.f );
