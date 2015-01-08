@@ -6,9 +6,13 @@
 #include <string>
 #include <set>
 #include <queue>
+#include <cassert>
 
 #include "grid.h"
 #include "texture.h"
+
+struct Gem;
+
 
 /// \brief Class - gems manager/container
 ///        (inherited from regular 2D grid)
@@ -19,6 +23,7 @@
 class GemGrid : public Grid
 {
 //TODO OLGA - write all essentials
+    friend Gem;
 
 public:
 
@@ -48,6 +53,7 @@ public:
 
 
     void mouse(int mouse_x, int mouse_y );
+    
 
 private:
     /// \brief Create new gem - on grid init.
@@ -69,76 +75,87 @@ private:
     GemGrid(const GemGrid&) {}
     GemGrid& operator =(const GemGrid&) {return *this;}
 
+    //::draw_moving(size_t gem_idx, const GemGrid& grid, Gem& itself);
 private:
 // Private members
 
     Texture               tex_loader_ ;
 
-    struct Gem;
-    std::vector<Gem*>     gems_       ; // Array of all grid gems
+    mutable std::vector<Gem*>     gems_       ; // Array of all grid gems
     std::vector<unsigned> gem_masks_  ; // Gem mask/type
 
-    std::vector<size_t>   moving_gems_; // Indexes of moving gems
+    std::set<size_t>      moving_gems_; // Indexes of moving gems
     std::set<size_t>      win_gems_   ;
     
 
-// Internal Structures
-    struct Gem
+};
+
+// Internal Structure
+struct Gem
+{
+    GLfloat x_progress_ ;
+    GLfloat y_progress_ ;
+    GLfloat x_move_ ;
+    GLfloat y_move_ ;
+    size_t tex_idx_ ;
+    size_t new_tex_idx_ ;
+    
+    void (*draw_ptr_)(size_t, const GemGrid&, Gem& );
+    
+    //void (Gem::*draw_ptr_)(GLfloat, GLfloat, Gem&, const Texture&);
+    
+    static void draw_null  ( size_t gem_idx, const GemGrid& grid, Gem& itself);
+    //GLfloat x, GLfloat y, Gem& gem, const Texture& tex);
+    static void draw_static(  size_t gem_idx, const GemGrid& grid, Gem& itself);
+    //GLfloat x, GLfloat y, Gem& gem, const Texture& tex);
+    static void draw_moving(  size_t gem_idx, const GemGrid& grid, Gem& itself);
+    //GLfloat x, GLfloat y, Gem& gem, const Texture& tex);
+    
+    void set_moving(GLfloat x_move, GLfloat y_move, size_t new_tex_idx)
     {
-        GLfloat x_progress_ ;
-        GLfloat y_progress_ ;
-        GLfloat x_move_ ;
-        GLfloat y_move_ ;
-        size_t tex_idx_ ;
-
-        void (*draw_ptr_)(GLfloat, GLfloat, size_t, const Texture&);
-
-        static void draw_null  (GLfloat x, GLfloat y, Gem& /*TODO*/, const Texture&);
-        static void draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
-        static void draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture&);
-
-        void set_moving(GLfloat x_move, GLfloat y_move)
+        x_progress_ = 0;
+        y_progress_ = 0;
+        x_move_ = x_move;
+        y_move_ = y_move;
+        new_tex_idx_ = new_tex_idx;
+        assert(x_move_ * y_move_ == 0); // check that we mov only in one direction
+        draw_ptr_ = &(Gem::draw_moving);
+    }
+    
+    void set_static(int tex_idx = -1)
+    {
+        x_progress_ = -1;
+        y_progress_ = -1;
+        x_move_ = -1;
+        y_move_ = -1;
+        new_tex_idx_ = 0;
+        draw_ptr_ = &(Gem::draw_static);
+        if (tex_idx > -1)
         {
-            x_progress_ = 0;
-            y_progress_ = 0;
-            x_move_ = x_move;
-            y_move_ = y_move;
-            draw_ptr_ = &(GemGrid::Gem::draw_moving);
-        }
-
-        void set_static(int tex_idx = -1)
-        {
-            x_progress_ = -1;
-            y_progress_ = -1;
-            x_move_ = -1;
-            y_move_ = -1;
-            draw_ptr_ = &(GemGrid::Gem::draw_static);
-            if (tex_idx > -1)
-            {
-                tex_idx_ = tex_idx;
-            }
-            
-        }
-
-        void set_null(void)
-        {
-            x_progress_ = -1;
-            y_progress_ = -1;
-            x_move_ = -1;
-            y_move_ = -1;
-            draw_ptr_ = &(GemGrid::Gem::draw_null);
+            tex_idx_ = tex_idx;
         }
         
-        Gem(size_t tex_idx)
-        {
-            this->set_static(tex_idx);
-        }
-    };
-
-
-
-
+    }
+    
+    void set_null(void)
+    {
+        x_progress_ = -1;
+        y_progress_ = -1;
+        x_move_ = -1;
+        y_move_ = -1;
+        new_tex_idx_ = 0;
+        draw_ptr_ = &(Gem::draw_null);
+    }
+    
+    Gem(size_t tex_idx)
+    {
+        this->set_static(tex_idx);
+    }
 };
+
+//extern std::set<Gem*>   gMovingGems; // Indexes of moving gems
+
+
 
 #define GEM_GRID GemGrid::get_instance()
 

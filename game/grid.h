@@ -50,7 +50,7 @@ public:
     /// \param idx index of face
     /// \param[out] ad_faces array of adjacent faces (diagonals are not included)
     /// \return number of neighbour faces
-    int get_ad(int idx, std::set<int>& ad_faces) const;
+    int get_ad(int idx, std::set<int>& ad_gems) const;
     
 protected:
 

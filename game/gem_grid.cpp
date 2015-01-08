@@ -85,36 +85,61 @@ bool GemGrid::load_gems_tex( const std::map<unsigned, std::string>& tex_map )
 //-----------------------------------------------------------------------------
 void GemGrid::draw( void ) const
 {
+    // draw background
     const GLuint w = this->tex_loader_.get_bg_width ();
     const GLuint h = this->tex_loader_.get_bg_height();
     GLfloat x = ( SCREEN_WIDTH  - w ) / 2.f;
     GLfloat y = ( SCREEN_HEIGHT - h ) / 2.f;
     this->tex_loader_.draw(x, y);
 
-    for (int i = 0; i < (this->num_x_ * this->num_y_); ++i)
+    // draw gems
+    const size_t all_gems = this->num_x_ * this->num_y_;
+    for (size_t i = 0; i < all_gems; ++i)
     {
-        x = (GLfloat)this->get_x(i);
-        y = (GLfloat)this->get_y(i);
-        ///std::cout << std::endl << "!!! >>> x = " << x << ", y = " << y << std::endl;
-        size_t tex_idx = this->gems_[i]->tex_idx_;
-        this->gems_[i]->draw_ptr_(x, y, tex_idx, this->tex_loader_); // Calls texture draw or nothing
+        this->gems_[i]->draw_ptr_(i, *this, *this->gems_[i]); // Call corresponding draw-method
     }
 }
 
 //-----------------------------------------------------------------------------
-void GemGrid::Gem::draw_null  (GLfloat , GLfloat, size_t, const Texture&) { return; }
+//void Gem::draw_null  (GLfloat , GLfloat, Gem&, const Texture&) { return; }
+void Gem::draw_null( size_t gem_idx, const GemGrid& grid, Gem& itself ) { return; }
 
 //-----------------------------------------------------------------------------
-void GemGrid::Gem::draw_static(GLfloat x, GLfloat y, size_t tex_idx, const Texture& tex_loader)
+//void Gem::draw_static(GLfloat x, GLfloat y, Gem& gem, const Texture& tex_loader)
+void Gem::draw_static( size_t gem_idx, const GemGrid& grid, Gem& itself )
 {
-    tex_loader.draw(x, y, tex_idx);
+    GLfloat x = (GLfloat)grid.get_x(gem_idx);
+    GLfloat y = (GLfloat)grid.get_y(gem_idx);
+    grid.tex_loader_.draw(x, y, itself.tex_idx_);
     return;
 }
 
 //-----------------------------------------------------------------------------
-void GemGrid::Gem::draw_moving(GLfloat x, GLfloat y, size_t tex_idx, const Texture& tex_loader)
+void Gem::draw_moving( size_t gem_idx, const GemGrid& grid, Gem& itself )
 {
+    static GLfloat step = 0;
+    std::cout << "Hi from MOVING gems" << std::endl;
+    // WARNING!! one of 'move' variables (x or y) is always 0!!
+    step = (itself.y_move_ + itself.x_move_) / static_cast<GLfloat>(SCREEN_FPS * 0.25);
     
+    if (fabs(itself.x_progress_ + itself.y_progress_) < fabs(itself.y_move_ + itself.x_move_))
+    {
+        if (itself.x_move_ > 0)
+            itself.x_progress_ += step;
+        else
+            itself.y_progress_ += step;
+        
+        GLfloat x = (GLfloat)grid.get_x(gem_idx);
+        GLfloat y = (GLfloat)grid.get_y(gem_idx);
+        
+        grid.tex_loader_.draw(x + itself.x_progress_, y + itself.y_progress_, itself.tex_idx_);
+    }
+    else
+    {
+        std::set<size_t>::const_iterator it = grid.moving_gems_.find(gem_idx);
+        assert(it != grid.moving_gems_.end());
+        itself.set_static(itself.new_tex_idx_);
+    }
     return;
 }
 
@@ -133,13 +158,13 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
     // Initial mouse touch
     if (this->moving_gems_.size() == 0)
     {
-        this->moving_gems_.push_back(static_cast<size_t>(gem_idx));
+        this->moving_gems_.insert(static_cast<size_t>(gem_idx));
     }
     // Mouse was already pressed at least once before
     else
     {
-        int prev_gem_idx = this->moving_gems_.front();
-        if (gem_idx == prev_gem_idx)
+        size_t prev_gem_idx = *(this->moving_gems_.begin());
+        if (static_cast<size_t>(gem_idx) == prev_gem_idx)
         {
             this->moving_gems_.clear();
             std::cout << "Two touches into the same gem (moving_gems_ vector cleared)" <<std::endl;
@@ -180,14 +205,16 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
             if (win_found)
             {
                 // add the second gem to the moving queue, set them new coordinates
-                this->moving_gems_.push_back(static_cast<size_t>(gem_idx));
+                this->moving_gems_.insert(static_cast<size_t>(gem_idx));
                 
                 // set gems as moving
                 this->gems_[gem_idx]->set_moving( this->get_x(prev_gem_idx) - this->get_x(gem_idx),
-                                                  this->get_y(prev_gem_idx) - this->get_y(gem_idx));
+                                                  this->get_y(prev_gem_idx) - this->get_y(gem_idx),
+                                                  this->gems_[prev_gem_idx]->tex_idx_);
                 
                 this->gems_[prev_gem_idx]->set_moving( this->get_x(gem_idx) - this->get_x(prev_gem_idx),
-                                                       this->get_y(gem_idx) - this->get_y(prev_gem_idx));
+                                                       this->get_y(gem_idx) - this->get_y(prev_gem_idx),
+                                                       this->gems_[gem_idx]->tex_idx_);
             }
             else
             {
