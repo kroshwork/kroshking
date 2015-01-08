@@ -28,8 +28,8 @@ public:
     /// \brief draw textures
     /// \param x - x centered offset
     /// \param y - y centered offset
-    /// \param tex_idx texture index
-    void draw( GLfloat x, GLfloat y, size_t tex_idx = BACKGROUND_IDX) const;
+    /// \param tex_idx texture index (-1 means - do not draw)
+    void draw( GLfloat x, GLfloat y, int tex_idx = static_cast<int>(BACKGROUND_IDX)) const;
 
     /// \brief Deletes loaded textures, 0-s parameters
     void clear( void );

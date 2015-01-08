@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <stdlib.h>    
 #include <time.h>       
-//urnadom
+//urandom
 #include <fcntl.h>
 #include <cassert>
 
@@ -105,7 +105,7 @@ unsigned Texture::get_random(void) const
             number = number % (this->descr_.size() - 1) + 1;
         }
 
-        if (::close(fd) == -1) 
+        if (::close(fd) == -1)
         { 
             std::cerr << "Texture :: failed to close /dev/urandom" << std::endl; 
         }
@@ -153,10 +153,13 @@ void Texture::TexDescr::clear( void )
 }
 
 //-----------------------------------------------------------------------------
-void Texture::draw( GLfloat x, GLfloat y, size_t tex_idx) const
+void Texture::draw( GLfloat x, GLfloat y, int tex_idx) const
 {
-    ////std::cout << "Drawing index = " << tex_idx << std::endl;
-    this->descr_[tex_idx].draw(x, y);
+    if (tex_idx >= 0 && tex_idx < static_cast<int>(this->descr_.size()))
+    {
+        ////std::cout << "Drawing index = " << tex_idx << std::endl;
+        this->descr_[tex_idx].draw(x, y);
+    }
 }
 
 //-----------------------------------------------------------------------------

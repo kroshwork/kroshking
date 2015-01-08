@@ -28,6 +28,7 @@ public:
     // x,y - mouse coordinates
     // return - index value - on success, -1 - error/did not find index (i.e. input coords are outside of the grid)
     int get_idx(float x, float y) const;
+    int get_idx(int i, int j) const;
 
     // Get grid indexes by face index
     // id - face/gem index

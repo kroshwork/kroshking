@@ -96,51 +96,85 @@ void GemGrid::draw( void ) const
     const size_t all_gems = this->num_x_ * this->num_y_;
     for (size_t i = 0; i < all_gems; ++i)
     {
-        this->gems_[i]->draw_ptr_(i, *this, *this->gems_[i]); // Call corresponding draw-method
+        x = (GLfloat)this->get_x(i) + this->gems_[i]->x_progress_;
+        y = (GLfloat)this->get_y(i) + this->gems_[i]->y_progress_;
+        this->tex_loader_.draw(x, y, this->gems_[i]->tex_idx_);
     }
 }
 
 //-----------------------------------------------------------------------------
-//void Gem::draw_null  (GLfloat , GLfloat, Gem&, const Texture&) { return; }
-void Gem::draw_null( size_t gem_idx, const GemGrid& grid, Gem& itself ) { return; }
-
-//-----------------------------------------------------------------------------
-//void Gem::draw_static(GLfloat x, GLfloat y, Gem& gem, const Texture& tex_loader)
-void Gem::draw_static( size_t gem_idx, const GemGrid& grid, Gem& itself )
+void GemGrid::update( void )
 {
-    GLfloat x = (GLfloat)grid.get_x(gem_idx);
-    GLfloat y = (GLfloat)grid.get_y(gem_idx);
-    grid.tex_loader_.draw(x, y, itself.tex_idx_);
-    return;
-}
-
-//-----------------------------------------------------------------------------
-void Gem::draw_moving( size_t gem_idx, const GemGrid& grid, Gem& itself )
-{
-    static GLfloat step = 0;
-    std::cout << "Hi from MOVING gems" << std::endl;
-    // WARNING!! one of 'move' variables (x or y) is always 0!!
-    step = (itself.y_move_ + itself.x_move_) / static_cast<GLfloat>(SCREEN_FPS * 0.25);
-    
-    if (fabs(itself.x_progress_ + itself.y_progress_) < fabs(itself.y_move_ + itself.x_move_))
+    if (this->moving_gems_.size() > 1) // 2 - is min num to move gems
     {
-        if (itself.x_move_ > 0)
-            itself.x_progress_ += step;
-        else
-            itself.y_progress_ += step;
-        
-        GLfloat x = (GLfloat)grid.get_x(gem_idx);
-        GLfloat y = (GLfloat)grid.get_y(gem_idx);
-        
-        grid.tex_loader_.draw(x + itself.x_progress_, y + itself.y_progress_, itself.tex_idx_);
+        std::set<size_t>::iterator mv_it = this->moving_gems_.begin();
+    
+        Gem::GemStatus status = Gem::GS_INITIAL;
+        for (; mv_it != this->moving_gems_.end(); ++mv_it)
+        {
+            size_t ttt=*mv_it;
+            status = this->gems_[ttt]->update();
+            if (status == Gem::GS_DONE)
+            {
+                // Update mask when done
+                this->gem_masks_[*mv_it] = this->tex_loader_.get_mask(this->gems_[*mv_it]->tex_idx_);
+            }
+        }
+        if (status == Gem::GS_DONE)
+        {
+            // Remove from the moving set
+            this->moving_gems_.clear();
+        }
     }
     else
     {
-        std::set<size_t>::const_iterator it = grid.moving_gems_.find(gem_idx);
-        assert(it != grid.moving_gems_.end());
-        itself.set_static(itself.new_tex_idx_);
+    if (this->moving_gems_.size() == 0 && this->win_gems_.size() > 0)
+    {
+        std::set<size_t>::iterator win_it = this->win_gems_.begin();
+        std::set<size_t>::const_iterator win_end = this->win_gems_.end();
+
+        // NULL textures for the win lines
+        for (; win_it != win_end; ++win_it)
+        {
+            this->gems_[*win_it]->tex_idx_ = -1;
+            this->gem_masks_[*win_it] = GM_NONE;
+        }
+        
+        // Set all gems above as moving
+        
+        
     }
-    return;
+    }
+    
+    
+    
+    
+}
+
+//-----------------------------------------------------------------------------
+Gem::GemStatus Gem::update( void )
+{
+    GemStatus status = GS_INITIAL;
+    static GLfloat step = 0;
+    std::cout << "Hi from MOVING gems" << std::endl;
+    // WARNING!! one of 'move' variables (x or y) is always 0!!
+    step = (this->y_move_ + this->x_move_) / static_cast<GLfloat>(SCREEN_FPS * 2.5); //0.25);
+    
+    if (fabs(this->x_progress_ + this->y_progress_) < fabs(this->y_move_ + this->x_move_))
+    {
+        if (fabs(this->x_move_) > 0)
+            this->x_progress_ += step;
+        else
+            this->y_progress_ += step;
+        
+        status = GS_MOVING;
+    }
+    else
+    {
+        this->set_static(this->new_tex_idx_);
+        status = GS_DONE;
+    }
+    return status;
 }
 
 //-----------------------------------------------------------------------------
@@ -258,6 +292,8 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
                         win_idx->insert(n);
                         return res;
                     });
+        // Insert self
+        win_idx->insert(this->get_idx(i, j));
         std::cout << "WON idxs:";
         std::cout << std::endl;
         for_each (win_idx->begin(), win_idx->end(), [](int n) {std::cout << n << '\t';});
@@ -270,11 +306,6 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
 //-----------------------------------------------------------------------------
 bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std::set<size_t>* win_gems) const
 {
-    if (win_gems != NULL)
-    {
-        win_gems->clear();
-    }
-
     // Check left horizontal line
     unsigned res_left = 0;
     if (i >= (WIN_LINE_SIZE - 1))

@@ -1,6 +1,7 @@
 #include "grid.h"
 #include <iostream>
 #include <cmath>
+#include <cassert>
 
 // Public methods
 
@@ -73,6 +74,13 @@ int Grid::get_idx(float x, float y) const
     result = std::floor( (x - this->min_x_) / this->len_x_ )
     +  std::floor((y - this->min_y_) / this->len_y_) * this->num_x_ ;
     return result;
+}
+
+//-----------------------------------------------------------------------------
+int Grid::get_idx(int i, int j) const
+{
+    assert((i >= 0) && (i < this->num_x_) && (j >= 0) && (j < this->num_y_));
+    return i + this->num_x_ * j;
 }
 
 //-----------------------------------------------------------------------------
