@@ -108,7 +108,7 @@ void GemGrid::update( void )
     if (this->moving_gems_.size() > 1) // 2 - is min num to move gems
     {
         std::set<size_t>::iterator mv_it = this->moving_gems_.begin();
-    
+
         Gem::GemStatus status = Gem::GS_INITIAL;
         for (; mv_it != this->moving_gems_.end(); ++mv_it)
         {
@@ -128,27 +128,20 @@ void GemGrid::update( void )
     }
     else
     {
-    if (this->moving_gems_.size() == 0 && this->win_gems_.size() > 0)
-    {
-        std::set<size_t>::iterator win_it = this->win_gems_.begin();
-        std::set<size_t>::const_iterator win_end = this->win_gems_.end();
-
-        // NULL textures for the win lines
-        for (; win_it != win_end; ++win_it)
+        if (this->moving_gems_.size() == 0 && this->win_gems_.size() > 0)
         {
-            this->gems_[*win_it]->tex_idx_ = -1;
-            this->gem_masks_[*win_it] = GM_NONE;
+            std::set<size_t>::iterator win_it = this->win_gems_.begin();
+            std::set<size_t>::const_iterator win_end = this->win_gems_.end();
+
+            // NULL textures for the win lines
+            for (; win_it != win_end; ++win_it)
+            {
+                this->gems_[*win_it]->tex_idx_ = -1;
+                this->gem_masks_[*win_it] = GM_NONE;
+            }
+            // Set all gems above as moving
         }
-        
-        // Set all gems above as moving
-        
-        
     }
-    }
-    
-    
-    
-    
 }
 
 //-----------------------------------------------------------------------------
@@ -159,14 +152,17 @@ Gem::GemStatus Gem::update( void )
     std::cout << "Hi from MOVING gems" << std::endl;
     // WARNING!! one of 'move' variables (x or y) is always 0!!
     step = (this->y_move_ + this->x_move_) / static_cast<GLfloat>(SCREEN_FPS * 2.5); //0.25);
-    
+
     if (fabs(this->x_progress_ + this->y_progress_) < fabs(this->y_move_ + this->x_move_))
     {
         if (fabs(this->x_move_) > 0)
+        {
             this->x_progress_ += step;
+        }
         else
+        {
             this->y_progress_ += step;
-        
+        }
         status = GS_MOVING;
     }
     else
@@ -186,7 +182,7 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
         std::cout << "Mouse did not touch gems" << std::endl;
         return;
     }
-    
+
     std::cout << "TOUCHED GEM # " << gem_idx << std::endl;
 
     // Initial mouse touch
@@ -203,24 +199,22 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
             this->moving_gems_.clear();
             std::cout << "Two touches into the same gem (moving_gems_ vector cleared)" <<std::endl;
             return;
-            
         }
         std::set<int> ad_gems;
         this->get_ad(prev_gem_idx, ad_gems);
         if (ad_gems.find(gem_idx) != ad_gems.end())
         {
-            
             // grid indexes of the current touched gem
             int cur_i = -1, cur_j = -1;
             this->get_ij(gem_idx, cur_i, cur_j);
             unsigned cur_mask = this->gem_masks_[gem_idx];
-            
+
             // grid indexes of the previous touched gem
             int prev_i = -1, prev_j = -1;
             this->get_ij(prev_gem_idx, prev_i, prev_j);
             unsigned prev_mask = this->gem_masks_[prev_gem_idx];
-            
-            
+
+
             bool win_found = false;
             this->win_gems_.clear();
             // will we win if current gem will be moved to the previous position?
@@ -229,23 +223,23 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
                 win_found = true;
                 std::cout << "Yeii we won some lines (CHECK 1)" << std::endl;
             }
-            
+
             if ( this->find_win_lines( cur_i, cur_j, prev_mask, &this->win_gems_) )
             {
                 win_found = true;
                 std::cout << "Yeii we won some lines (CHECK 2)" << std::endl;
             }
-            
+
             if (win_found)
             {
                 // add the second gem to the moving queue, set them new coordinates
                 this->moving_gems_.insert(static_cast<size_t>(gem_idx));
-                
+
                 // set gems as moving
                 this->gems_[gem_idx]->set_moving( this->get_x(prev_gem_idx) - this->get_x(gem_idx),
                                                   this->get_y(prev_gem_idx) - this->get_y(gem_idx),
                                                   this->gems_[prev_gem_idx]->tex_idx_);
-                
+
                 this->gems_[prev_gem_idx]->set_moving( this->get_x(gem_idx) - this->get_x(prev_gem_idx),
                                                        this->get_y(gem_idx) - this->get_y(prev_gem_idx),
                                                        this->gems_[gem_idx]->tex_idx_);
@@ -254,18 +248,14 @@ void  GemGrid::mouse(int mouse_x, int mouse_y )
             {
                 this->moving_gems_.clear();
             }
-        
         }
-
     }
-    
 }
 
 //-----------------------------------------------------------------------------
-unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const int j_inc,
-                            const unsigned mask, std::set<size_t>* win_idx) const
+unsigned GemGrid::check_line(int i, int j, int i_inc, int j_inc,
+                            unsigned mask, std::set<size_t>* win_idx) const
 {
-// TODO ? change to use recursion
     unsigned res = mask;
 
     // Create look-up indexes array
@@ -284,7 +274,6 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
 
     //TODO CHECK IT
 //    std::cout << std::endl << ">>> CHECK POINT <<< GemGrid :: check_line result = " << res << std::endl;
-
     if (res > 0 && win_idx != NULL)
     {
         for_each (idx_vec.begin(), idx_vec.end(), [&](int n)
@@ -298,13 +287,13 @@ unsigned GemGrid::check_line(const int i, const int j, const int i_inc, const in
         std::cout << std::endl;
         for_each (win_idx->begin(), win_idx->end(), [](int n) {std::cout << n << '\t';});
         std::cout << std::endl;
-        //TODO CHECK IT
     }
     return res;
 }
 
 //-----------------------------------------------------------------------------
-bool GemGrid::find_win_lines(const int i, const int j, const unsigned mask, std::set<size_t>* win_gems) const
+bool GemGrid::find_win_lines(int i, int j, unsigned mask,
+                                    std::set<size_t>* win_gems) const
 {
     // Check left horizontal line
     unsigned res_left = 0;
@@ -342,7 +331,7 @@ void GemGrid::new_gem(size_t idx)
 {
     int i = 0, j = 0;
     this->get_ij(idx, i, j);
-   
+
     unsigned gem_mask = this->tex_loader_.get_random();
     bool lines_found = this->find_win_lines(i, j, gem_mask, NULL);
 

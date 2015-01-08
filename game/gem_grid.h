@@ -52,24 +52,24 @@ public:
     void draw( void ) const; //TODO const/not const??
 
     void update( void );
-    
+
     void mouse(int mouse_x, int mouse_y );
-    
+
 
 private:
     /// \brief Create new gem - on grid init.
     void new_gem(size_t idx);
 
     /// \brief Check current line for win
-    unsigned check_line(int i, int j, int i_inc, int j_inc, 
+    unsigned check_line(int i, int j, int i_inc, int j_inc,
         unsigned mask, std::set<size_t>* win_idx) const;
 
     /// \brief Find win lines
-    bool find_win_lines(int i, int j, unsigned mask, 
+    bool find_win_lines(int i, int j, unsigned mask,
         std::set<size_t>* win_gems) const;
 
     /// \brief Private default consturctor
-    /// \warning Is triggered by get_instance() 
+    /// \warning Is triggered by get_instance()
     GemGrid(void);
 
     /// \brief Disabled Cope constructor and operator =
@@ -87,7 +87,7 @@ private:
 
     std::set<size_t>      moving_gems_; // Indexes of moving gems
     std::set<size_t>      win_gems_   ;
-    
+
 
 };
 
@@ -100,8 +100,8 @@ struct Gem
         GS_MOVING  = 1,
         GS_DONE    = 2
     };
- 
-    
+
+
     GLfloat x_progress_ ;
     GLfloat y_progress_ ;
     GLfloat x_move_ ;
@@ -118,7 +118,7 @@ struct Gem
         new_tex_idx_ = new_tex_idx;
         assert(x_move_ * y_move_ == 0); // check that we mov only in one direction
     }
-    
+
     void set_static(int tex_idx)
     {
         x_progress_ = 0;
@@ -128,7 +128,7 @@ struct Gem
         new_tex_idx_ = -1;
         tex_idx_ = tex_idx;
     }
-    
+
     void set_null(void)
     {
         x_progress_ = 0;
@@ -138,19 +138,15 @@ struct Gem
         new_tex_idx_ = -1;
         tex_idx_ = -1;
     }
-    
+
     Gem(size_t tex_idx)
     {
         this->set_static(tex_idx);
     }
-    
+
     GemStatus update( void );
 
 };
-
-//extern std::set<Gem*>   gMovingGems; // Indexes of moving gems
-
-
 
 #define GEM_GRID GemGrid::get_instance()
 
