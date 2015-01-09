@@ -4,7 +4,9 @@
 // Screen constants
 const int SCREEN_WIDTH = 800;//640;
 const int SCREEN_HEIGHT = 700;//480;
-const int SCREEN_FPS = 60; 
+const int SCREEN_FPS = 60;
+
+const float SPEED_RATIO = 1;
 
 // Game constants
 const int GRID_X = 8;

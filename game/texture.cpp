@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <algorithm>
-#include <cstdio>
-#include <stdlib.h>    
+//#include <cstdio>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include <time.h>       
 //urandom
 #include <fcntl.h>
 #include <cassert>
+#include <random>
 
 //-----------------------------------------------------------------------------
 Texture::Texture(void) : current_tex_ (0), descr_(std::vector<TexDescr>())
@@ -89,32 +91,10 @@ unsigned Texture::get_random(void) const
 {
 
     unsigned number = 0;
-/*
-    int fd = ::open("/dev/urandom", O_RDONLY);
-    if (fd != -1)
-    {
-        if (::fread(fd, &number, sizeof(number)) == -1)
-        { 
-            std::cerr << "Texture :: failed to get random number from /dev/urandom";
-            std::cerr << std::endl; 
-            number = rand() % (this->descr_.size() - 1) + 1;
-        }
-        else
-        {
-            // Successfully received random number - range by [1;size - 1]
-            number = number % (this->descr_.size() - 1) + 1;
-        }
-
-        if (::close(fd) == -1)
-        { 
-            std::cerr << "Texture :: failed to close /dev/urandom" << std::endl; 
-        }
-    }
-    else*///TODO FIXME
-    {
-        std::cerr << "Texture :: failed to open /dev/urandom";
-        number = rand() % (this->descr_.size() - 1) + 1;
-    }
+    std::random_device rd;
+    number = static_cast<unsigned>(rd());
+    // Successfully received random number - range by [1;size - 1]
+    number = number % (this->descr_.size() - 1) + 1;
 
     std::cout << "Generated tex index = " << number << std::endl;
     assert(number > 0 && number < 6);

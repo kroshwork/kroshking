@@ -4,6 +4,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <cassert>
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 GemGrid::~GemGrid(void)
@@ -15,6 +16,7 @@ GemGrid::~GemGrid(void)
 //-----------------------------------------------------------------------------
 GemGrid::GemGrid(void) : Grid()
 {
+    this->null_gems_ = NULL;
     this->num_x_ = GRID_X;
     this->num_y_ = GRID_Y;
 }
@@ -105,6 +107,7 @@ void GemGrid::draw( void ) const
 //-----------------------------------------------------------------------------
 void GemGrid::update( void )
 {
+    // Regular move state
     if (this->moving_gems_.size() > 1) // 2 - is min num to move gems
     {
         std::set<size_t>::iterator mv_it = this->moving_gems_.begin();
@@ -125,25 +128,43 @@ void GemGrid::update( void )
             // Remove from the moving set
             this->moving_gems_.clear();
         }
+        return;
     }
-    else
-    {
-    if (this->moving_gems_.size() == 0 && this->win_gems_.size() > 0)
+    
+    // Nothing to move, processing win lines
+    if (this->moving_gems_.size() == 0 && this->win_gems_.size() > 0 && this->null_gems_ == NULL)
     {
         std::set<size_t>::iterator win_it = this->win_gems_.begin();
         std::set<size_t>::const_iterator win_end = this->win_gems_.end();
 
-        // NULL textures for the win lines
+        // NULL textures for the win lines and set all gems above as "moving"
         for (; win_it != win_end; ++win_it)
         {
-            this->gems_[*win_it]->tex_idx_ = -1;
+            this->gems_[*win_it]->set_null();
             this->gem_masks_[*win_it] = GM_NONE;
         }
         
-        // Set all gems above as moving
-        
-        
+        this->null_gems_ = &this->win_gems_;
+        return;
     }
+    
+    // Processed win lines, getting falling gems
+    if (this->null_gems_ != NULL)
+    {
+        std::set<size_t>::iterator null_it = this->null_gems_->begin();
+        std::set<size_t>::const_iterator null_end = this->null_gems_->end();
+        
+        int i = -1, j = -1;
+        
+        for (; null_it != null_end; ++null_it)
+        {
+            this->get_ij(*null_it, i, j);
+            this->gems_[*null_it]->set_null();
+            this->gem_masks_[*null_it] = GM_NONE;
+        }
+
+        
+        
     }
     
     
@@ -156,9 +177,10 @@ Gem::GemStatus Gem::update( void )
 {
     GemStatus status = GS_INITIAL;
     static GLfloat step = 0;
-    std::cout << "Hi from MOVING gems" << std::endl;
+    //std::cout << "Hi from MOVING gems" << std::endl;
+    
     // WARNING!! one of 'move' variables (x or y) is always 0!!
-    step = (this->y_move_ + this->x_move_) / static_cast<GLfloat>(SCREEN_FPS * 2.5); //0.25);
+    step = (this->y_move_ + this->x_move_) / static_cast<GLfloat>(SCREEN_FPS * SPEED_RATIO);
     
     if (fabs(this->x_progress_ + this->y_progress_) < fabs(this->y_move_ + this->x_move_))
     {

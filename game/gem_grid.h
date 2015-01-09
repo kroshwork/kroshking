@@ -87,6 +87,7 @@ private:
 
     std::set<size_t>      moving_gems_; // Indexes of moving gems
     std::set<size_t>      win_gems_   ;
+    std::set<size_t> *    null_gems_  ;
     
 
 };
